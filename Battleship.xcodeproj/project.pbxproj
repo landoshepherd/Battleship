@@ -1,0 +1,330 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC882B52239B462900571CC8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4A239B462800571CC8 /* Makefile */; };
+		DC882B53239B462900571CC8 /* BS_Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4D239B462800571CC8 /* BS_Utilities.cpp */; };
+		DC882B54239B462900571CC8 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4E239B462800571CC8 /* Player.cpp */; };
+		DC882B55239B462900571CC8 /* Game_Components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4F239B462800571CC8 /* Game_Components.cpp */; };
+		DC882B56239B462900571CC8 /* BS_Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B51239B462800571CC8 /* BS_Controller.cpp */; };
+		DC882B5B239B465500571CC8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = DC882B59239B465500571CC8 /* Makefile */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DC882B37239B43D200571CC8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DC882B39239B43D200571CC8 /* Battleship */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Battleship; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC882B48239B462800571CC8 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		DC882B49239B462800571CC8 /* BS_Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BS_Utilities.hpp; sourceTree = "<group>"; };
+		DC882B4A239B462800571CC8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		DC882B4B239B462800571CC8 /* Game_Components.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game_Components.hpp; sourceTree = "<group>"; };
+		DC882B4C239B462800571CC8 /* Vessel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vessel.hpp; sourceTree = "<group>"; };
+		DC882B4D239B462800571CC8 /* BS_Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BS_Utilities.cpp; sourceTree = "<group>"; };
+		DC882B4E239B462800571CC8 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		DC882B4F239B462800571CC8 /* Game_Components.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game_Components.cpp; sourceTree = "<group>"; };
+		DC882B50239B462800571CC8 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		DC882B51239B462800571CC8 /* BS_Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BS_Controller.cpp; sourceTree = "<group>"; };
+		DC882B57239B465500571CC8 /* CMakeCache.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeCache.txt; sourceTree = "<group>"; };
+		DC882B58239B465500571CC8 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
+		DC882B59239B465500571CC8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		DC882B5A239B465500571CC8 /* CMakeFiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CMakeFiles; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC882B36239B43D200571CC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC882B30239B43D200571CC8 = {
+			isa = PBXGroup;
+			children = (
+				DC882B3B239B43D200571CC8 /* Battleship */,
+				DC882B3A239B43D200571CC8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC882B3A239B43D200571CC8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC882B39239B43D200571CC8 /* Battleship */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC882B3B239B43D200571CC8 /* Battleship */ = {
+			isa = PBXGroup;
+			children = (
+				DC882B47239B455500571CC8 /* src */,
+				DC882B46239B454E00571CC8 /* build */,
+			);
+			path = Battleship;
+			sourceTree = "<group>";
+		};
+		DC882B46239B454E00571CC8 /* build */ = {
+			isa = PBXGroup;
+			children = (
+				DC882B58239B465500571CC8 /* cmake_install.cmake */,
+				DC882B57239B465500571CC8 /* CMakeCache.txt */,
+				DC882B5A239B465500571CC8 /* CMakeFiles */,
+				DC882B59239B465500571CC8 /* Makefile */,
+			);
+			path = build;
+			sourceTree = "<group>";
+		};
+		DC882B47239B455500571CC8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DC882B51239B462800571CC8 /* BS_Controller.cpp */,
+				DC882B4D239B462800571CC8 /* BS_Utilities.cpp */,
+				DC882B49239B462800571CC8 /* BS_Utilities.hpp */,
+				DC882B48239B462800571CC8 /* CMakeLists.txt */,
+				DC882B4F239B462800571CC8 /* Game_Components.cpp */,
+				DC882B4B239B462800571CC8 /* Game_Components.hpp */,
+				DC882B4A239B462800571CC8 /* Makefile */,
+				DC882B4E239B462800571CC8 /* Player.cpp */,
+				DC882B50239B462800571CC8 /* Player.hpp */,
+				DC882B4C239B462800571CC8 /* Vessel.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC882B38239B43D200571CC8 /* Battleship */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC882B40239B43D200571CC8 /* Build configuration list for PBXNativeTarget "Battleship" */;
+			buildPhases = (
+				DC882B35239B43D200571CC8 /* Sources */,
+				DC882B36239B43D200571CC8 /* Frameworks */,
+				DC882B37239B43D200571CC8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Battleship;
+			productName = Battleship;
+			productReference = DC882B39239B43D200571CC8 /* Battleship */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC882B31239B43D200571CC8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Lando Shepherd";
+				TargetAttributes = {
+					DC882B38239B43D200571CC8 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = DC882B34239B43D200571CC8 /* Build configuration list for PBXProject "Battleship" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC882B30239B43D200571CC8;
+			productRefGroup = DC882B3A239B43D200571CC8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC882B38239B43D200571CC8 /* Battleship */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC882B35239B43D200571CC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC882B5B239B465500571CC8 /* Makefile in Sources */,
+				DC882B52239B462900571CC8 /* Makefile in Sources */,
+				DC882B53239B462900571CC8 /* BS_Utilities.cpp in Sources */,
+				DC882B54239B462900571CC8 /* Player.cpp in Sources */,
+				DC882B56239B462900571CC8 /* BS_Controller.cpp in Sources */,
+				DC882B55239B462900571CC8 /* Game_Components.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DC882B3E239B43D200571CC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DC882B3F239B43D200571CC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DC882B41239B43D200571CC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DC882B42239B43D200571CC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC882B34239B43D200571CC8 /* Build configuration list for PBXProject "Battleship" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC882B3E239B43D200571CC8 /* Debug */,
+				DC882B3F239B43D200571CC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC882B40239B43D200571CC8 /* Build configuration list for PBXNativeTarget "Battleship" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC882B41239B43D200571CC8 /* Debug */,
+				DC882B42239B43D200571CC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC882B31239B43D200571CC8 /* Project object */;
+}
