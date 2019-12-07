@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/landoshepherd/Documents/Projects/Battleship/Battleship/src/Player.cpp
-Player.hpp
-/Users/landoshepherd/Documents/Projects/Battleship/Battleship/src/Player.hpp
-
 /Users/landoshepherd/Documents/Projects/Battleship/Battleship/src/Player.hpp
 iostream
 -

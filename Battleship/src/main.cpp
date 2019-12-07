@@ -35,10 +35,10 @@ void MainMenu(Engine* game, char* action){
 }
 
 int main() {
-    Player* human = new Player;
-    Player* computer = new Player;
+    //Player* human = new Player;
+    //Player* computer = new Player;
     Engine* battleship = nullptr;
-    battleship = new Engine(human, computer);
+    battleship = new Engine();
     char action;
 
     while(true) {

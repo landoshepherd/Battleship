@@ -9,11 +9,12 @@
 #ifndef Game_Components_hpp
 #define Game_Components_hpp
 
-#include <iostream>
-#include <unistd.h>
 #include <iomanip>
-#include <time.h>
+#include <iostream>
+#include <memory>
+#include <unistd.h>
 #include <stdlib.h>
+#include <time.h>
 #include <vector>
 
 #include "utilities/BS_Utilities.hpp"
@@ -28,6 +29,8 @@ public:
 		Destructor - Clean up any dynamic memory
 	 */
 	~Engine();
+
+	void initialize();
     
     void SetupMarquee();
     void DisplayMarquee_();
@@ -48,6 +51,8 @@ public:
     void DeployHumanVessels();
     
     void DisplayDashboard();
+
+	Player
     
     
     /*!
@@ -110,15 +115,11 @@ private:
 	const int m_boardCol;
     char** m_sign = nullptr;
     char** m_gameBoard = nullptr;
-    Player* m_human = nullptr;
-    Player* m_computer = nullptr;
+    std::unique_ptr<Player> m_human;
+	std::unique_ptr<Player> m_computer;
     std::string m_humanReport;
     std::string m_computerReport;
     std::string m_generalReport;
-    
-    
-    
-
 };
 
 #endif /* Battleship_hpp */

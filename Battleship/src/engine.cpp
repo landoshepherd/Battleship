@@ -21,12 +21,16 @@ Engine::Engine():
 	m_computerReport("Nothing to report"),
 	m_generalReport("")
 {
-    srand(unsigned(time(0)));
+}
+
+void Engine::initialize()
+{
+	srand(unsigned(time(0)));
 
     for(int i = 0; i < m_signRow; i++){
         m_sign[i] = new char [m_signCol];
     }
-    
+
     for(int i = 0; i < m_signRow; i++){
         for(int j = 0; j < m_signCol; j++){
             m_sign[i][j] = ' ';
@@ -36,14 +40,12 @@ Engine::Engine():
     for(int i = 0; i < m_boardRow; i++){
         m_gameBoard[i] = new char [m_boardCol];
     }
-    
+
     for(int i = 0; i < m_boardRow; i++){
         for(int j = 0; j < m_boardCol; j++){
             m_gameBoard[i][j] = ' ';
         }
     }
-    
-    m_humanReport = "Nothing to report.";
 }
 
 
