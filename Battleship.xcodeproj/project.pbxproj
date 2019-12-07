@@ -10,9 +10,9 @@
 		DC882B52239B462900571CC8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4A239B462800571CC8 /* Makefile */; };
 		DC882B53239B462900571CC8 /* BS_Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4D239B462800571CC8 /* BS_Utilities.cpp */; };
 		DC882B54239B462900571CC8 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4E239B462800571CC8 /* Player.cpp */; };
-		DC882B55239B462900571CC8 /* Game_Components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4F239B462800571CC8 /* Game_Components.cpp */; };
-		DC882B56239B462900571CC8 /* BS_Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B51239B462800571CC8 /* BS_Controller.cpp */; };
+		DC882B55239B462900571CC8 /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B4F239B462800571CC8 /* engine.cpp */; };
 		DC882B5B239B465500571CC8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = DC882B59239B465500571CC8 /* Makefile */; };
+		DC882B5D239BE71E00571CC8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC882B5C239BE71E00571CC8 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,17 +32,17 @@
 		DC882B48239B462800571CC8 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		DC882B49239B462800571CC8 /* BS_Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BS_Utilities.hpp; sourceTree = "<group>"; };
 		DC882B4A239B462800571CC8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		DC882B4B239B462800571CC8 /* Game_Components.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game_Components.hpp; sourceTree = "<group>"; };
+		DC882B4B239B462800571CC8 /* engine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = engine.hpp; sourceTree = "<group>"; };
 		DC882B4C239B462800571CC8 /* Vessel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vessel.hpp; sourceTree = "<group>"; };
 		DC882B4D239B462800571CC8 /* BS_Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BS_Utilities.cpp; sourceTree = "<group>"; };
 		DC882B4E239B462800571CC8 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
-		DC882B4F239B462800571CC8 /* Game_Components.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game_Components.cpp; sourceTree = "<group>"; };
+		DC882B4F239B462800571CC8 /* engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = engine.cpp; sourceTree = "<group>"; };
 		DC882B50239B462800571CC8 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
-		DC882B51239B462800571CC8 /* BS_Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BS_Controller.cpp; sourceTree = "<group>"; };
 		DC882B57239B465500571CC8 /* CMakeCache.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeCache.txt; sourceTree = "<group>"; };
 		DC882B58239B465500571CC8 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
 		DC882B59239B465500571CC8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		DC882B5A239B465500571CC8 /* CMakeFiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CMakeFiles; sourceTree = "<group>"; };
+		DC882B5C239BE71E00571CC8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,18 +95,26 @@
 		DC882B47239B455500571CC8 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				DC882B51239B462800571CC8 /* BS_Controller.cpp */,
+				DC882B5E239BF5E200571CC8 /* vessel */,
+				DC882B5C239BE71E00571CC8 /* main.cpp */,
 				DC882B4D239B462800571CC8 /* BS_Utilities.cpp */,
 				DC882B49239B462800571CC8 /* BS_Utilities.hpp */,
 				DC882B48239B462800571CC8 /* CMakeLists.txt */,
-				DC882B4F239B462800571CC8 /* Game_Components.cpp */,
-				DC882B4B239B462800571CC8 /* Game_Components.hpp */,
+				DC882B4F239B462800571CC8 /* engine.cpp */,
+				DC882B4B239B462800571CC8 /* engine.hpp */,
 				DC882B4A239B462800571CC8 /* Makefile */,
 				DC882B4E239B462800571CC8 /* Player.cpp */,
 				DC882B50239B462800571CC8 /* Player.hpp */,
 				DC882B4C239B462800571CC8 /* Vessel.hpp */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		DC882B5E239BF5E200571CC8 /* vessel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = vessel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,8 +178,8 @@
 				DC882B52239B462900571CC8 /* Makefile in Sources */,
 				DC882B53239B462900571CC8 /* BS_Utilities.cpp in Sources */,
 				DC882B54239B462900571CC8 /* Player.cpp in Sources */,
-				DC882B56239B462900571CC8 /* BS_Controller.cpp in Sources */,
-				DC882B55239B462900571CC8 /* Game_Components.cpp in Sources */,
+				DC882B5D239BE71E00571CC8 /* main.cpp in Sources */,
+				DC882B55239B462900571CC8 /* engine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
