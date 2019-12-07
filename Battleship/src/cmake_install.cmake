@@ -1,4 +1,4 @@
-# Install script for directory: /Users/landoshepherd/Documents/Projects/Battleship/src
+# Install script for directory: /Users/landoshepherd/Documents/Projects/Battleship/Battleship/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/landoshepherd/Documents/Projects/Battleship/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/landoshepherd/Documents/Projects/Battleship/Battleship/src/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

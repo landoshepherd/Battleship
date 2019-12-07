@@ -8,34 +8,42 @@
 
 #include "engine.hpp"
 
-Engine::Engine(Player* player1, Player* player2){
+Engine::Engine():
+	m_signRow(11),
+	m_signCol(68),
+	m_boardRow(8),
+	m_boardCol(26),
+	m_sign(new char*[m_signRow]),
+	m_gameBoard(new char*[m_boardRow]),
+	m_human(new Player),
+	m_computer(new Player),
+	m_humanReport("Nothing to report"),
+	m_computerReport("Nothing to report"),
+	m_generalReport("")
+{
     srand(unsigned(time(0)));
-    human = player1;
-    computer = player2;
-    
-    marquee = new char*[ROW];
-    for(int i = 0; i < ROW; i++){
-        marquee[i] = new char [COL];
+
+    for(int i = 0; i < m_signRow; i++){
+        m_sign[i] = new char [m_signCol];
     }
     
-    for(int i = 0; i < ROW; i++){
-        for(int j = 0; j < COL; j++){
-            marquee[i][j] = ' ';
+    for(int i = 0; i < m_signRow; i++){
+        for(int j = 0; j < m_signCol; j++){
+            m_sign[i][j] = ' ';
+        }
+    }
+
+    for(int i = 0; i < m_boardRow; i++){
+        m_gameBoard[i] = new char [m_boardCol];
+    }
+    
+    for(int i = 0; i < m_boardRow; i++){
+        for(int j = 0; j < m_boardCol; j++){
+            m_gameBoard[i][j] = ' ';
         }
     }
     
-    game_board = new char*[GBROW];
-    for(int i = 0; i < GBROW; i++){
-        game_board[i] = new char [GBCOL];
-    }
-    
-    for(int i = 0; i < GBROW; i++){
-        for(int j = 0; j < GBCOL; j++){
-            game_board[i][j] = ' ';
-        }
-    }
-    
-    human_report = "Nothing to report.";
+    m_humanReport = "Nothing to report.";
 }
 
 
@@ -44,558 +52,558 @@ Engine::Engine(Player* player1, Player* player2){
  ******************************************************/
 void Engine::row0(int i, int j){
     if(j >= 0 && j <= 4){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 9 && j <= 10){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 14 && j <= 19){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 21 && j <= 26){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 40){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 56 && j <= 61){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 67){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row1(int i, int j){
     if(j >= 0 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 8 && j <= 11){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 14 && j <= 19){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 21 && j <= 26){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 40){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 56 && j <= 61){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 68){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row2(int i, int j){
     if(j >= 0 && j <= 1){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 4 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 8){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 11 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 36){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 43){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 58 && j <= 59){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 64){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 67 && j <= 68){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row3(int i, int j){
     if(j >= 0 && j <= 1){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 4 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 8){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 11 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 36){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 43){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 58 && j <= 59){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 64){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 67 && j <= 68){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row4(int i, int j){
     if(j >= 0 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 8){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 11 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 40){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 58 && j <= 59){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 68){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row5(int i, int j){
     if(j >= 0 && j <= 4){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 40){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 58 && j <= 59){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 67){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row6(int i, int j){
     if(j >= 0 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 36){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 46 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 58 && j <= 59){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 64){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row7(int i, int j){
     if(j >= 0 && j <= 1){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 4 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 8){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 11 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 36){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 46 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 58 && j <= 59){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 64){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row8(int i, int j){
     if(j >= 0 && j <= 1){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 4 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 8){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 11 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 29){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 36){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 46 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 58 && j <= 59){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 64){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row9(int i, int j){
     if(j >= 0 && j <= 5){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 8){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 11 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 33){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 40){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 56 && j <= 61){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 64){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 void Engine::row10(int i, int j){
     if(j >= 0 && j <= 4){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 7 && j <= 8){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 11 && j <= 12){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 16 && j <= 17){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 23 && j <= 24){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 28 && j <= 33){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 35 && j <= 40){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 42 && j <= 47){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 49 && j <= 50){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 53 && j <= 54){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 56 && j <= 61){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
     
     if(j >= 63 && j <= 64){
-        marquee[i][j] = '*';
+        m_sign[i][j] = '*';
     }
 }
 
 
 void Engine::SetupMarquee(){
-    for(int i = 0; i < ROW; i++){
-        for(int j = 0; j < COL; j++){
+    for(int i = 0; i < m_signRow; i++){
+        for(int j = 0; j < m_signCol; j++){
             if(i == 0)
             {
                 row0(i, j);
@@ -646,9 +654,9 @@ void Engine::SetupMarquee(){
 
 //Displays "Battleship" sign.
 void Engine::DisplayMarquee_(){
-    for (int i = 0; i < ROW; i++) {
-        for(int j = 0; j < COL; j++){
-            std::cout << marquee[i][j];
+    for (int i = 0; i < m_signRow; i++) {
+        for(int j = 0; j < m_signCol; j++){
+            std::cout << m_sign[i][j];
         }
         std::cout << std::endl;
     }
@@ -698,43 +706,43 @@ char Engine::MainMenu(){
  Return: Nothing
  ******************************************************/
 void Engine::BuildGameBoard(){
-    for (int i = 0; i < GBROW; i++) {
-        for(int j = 0; j < GBCOL; j++){
+    for (int i = 0; i < m_boardRow; i++) {
+        for(int j = 0; j < m_boardCol; j++){
             if(i == 0){
                 if(j >= 0 && j < 12){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
                 if(j >= 14 && j < 26){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
             }
             if(i == 7)
             {
                 if(j >= 0 && j < 12){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
                 if(j >= 14 && j < 25){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
             }
             if(j == 0){
                 if(i >= 0 && i < 8){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
             }
             if(j == 11){
                 if(i >= 0 && i < 8){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
             }
             if(j == 14){
                 if(i >= 0 && i < 8){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
             }
             if(j == 25){
                 if(i >= 0 && i < 8){
-                    game_board[i][j] = '#';
+                    m_gameBoard[i][j] = '#';
                 }
             }
         }
@@ -743,9 +751,9 @@ void Engine::BuildGameBoard(){
 
 void Engine::PrintGameBoard(){
     std::cout << std::endl;
-    for (auto i = 0; i < GBROW; i++) {
-        for(int j = 0; j < GBCOL; j++){
-            std::cout << game_board[i][j];
+    for (auto i = 0; i < m_boardRow; i++) {
+        for(int j = 0; j < m_boardCol; j++){
+            std::cout << m_gameBoard[i][j];
         }
         std::cout << std::endl;
     }
@@ -758,7 +766,7 @@ void Engine::PrintGameBoard(){
  Return: Nothing
  ******************************************************/
 void Engine::DisplayVessels(){
-    std::vector<Vessel*> vessels = human->GetVessels();
+    std::vector<Vessel*> vessels = m_human->GetVessels();
     char letter = 65;
     for (int i = 0; i < vessels.size(); i++){
         std::cout << "[" << letter << "] " << vessels[i]->GetVesselName() << "\t"
@@ -778,9 +786,9 @@ void Engine::DisplayVessels(){
  Return: Nothing
  ******************************************************/
 void Engine::ClearReports(){
-    human_report = " ";
-    computer_report = " ";
-    general_report = " ";
+    m_humanReport = " ";
+    m_computerReport = " ";
+    m_generalReport = " ";
 }
 
 
@@ -796,9 +804,9 @@ void Engine::DisplayDashboard(){
     std::cout << "****************************************\n";
     DisplayVessels();
     std::cout << std::endl;
-    std::cout << "AI Assistant: " + human_report + "\n";
-    std::cout << general_report << "\n";
-    std::cout << computer_report << "\n\n";
+    std::cout << "AI Assistant: " + m_humanReport + "\n";
+    std::cout << m_generalReport << "\n";
+    std::cout << m_computerReport << "\n\n";
     std::cout << "Select your next action from the choices below:" << std::endl;
     std::cout << "[L] Launch Attack\t";
     std::cout << "[S] Activate Stealth\t";
@@ -843,10 +851,10 @@ void Engine::DeployComputerVessels(){
         while(true) {
             x = rand() % 10 + 1;
             y = rand() % 6 + 1;
-            bool valid_space = SpaceAvailable(computer->GetVessels(), x, y);
+            bool valid_space = SpaceAvailable(m_computer->GetVessels(), x, y);
             if(valid_space){
-                computer->GetVessels()[i]->UpdateXCoor(x);
-                computer->GetVessels()[i]->UpdateYCoor(y);
+                m_computer->GetVessels()[i]->UpdateXCoor(x);
+                m_computer->GetVessels()[i]->UpdateYCoor(y);
                 break;
             }
         };
@@ -919,15 +927,15 @@ void Engine::DeployHumanVessels(){
     
     std::cout << "Now that the stage is set, let's deploy your vessels!" << std::endl;
     for (int i = 0; i < 5; i++) {
-        temp_vessel_ptr = human->GetVessels()[i];
+        temp_vessel_ptr = m_human->GetVessels()[i];
         while(true){
             x = SetXCoorHumanVessel(temp_vessel_ptr);
             y = SetYCoorHumanVessel(temp_vessel_ptr);
             
-            if(SpaceAvailable(human->GetVessels(), x, y)){
+            if(SpaceAvailable(m_human->GetVessels(), x, y)){
                 temp_vessel_ptr->UpdateXCoor(x);
                 temp_vessel_ptr->UpdateYCoor(y);
-                game_board[y][x] = temp_vessel_ptr->GetSymbol();
+                m_gameBoard[y][x] = temp_vessel_ptr->GetSymbol();
                 break;
             }
             std::cout << "You've already placed a vessel here. Try another space." << std::endl;
@@ -966,8 +974,8 @@ bool Engine::VesselDestroyed(Vessel* vessel){
  ******************************************************/
 bool Engine::AttackVesselFound(int x, int y){
     //Loop through list of vessels using XY coordinates to locate a vessel.
-    for (int i = 0; i < computer->GetVessels().size(); i++) {
-        if(computer->GetVessels()[i]->GetXCoor() == x && computer->GetVessels()[i]->GetYCoor() == y){
+    for (int i = 0; i < m_computer->GetVessels().size(); i++) {
+        if(m_computer->GetVessels()[i]->GetXCoor() == x && m_computer->GetVessels()[i]->GetYCoor() == y){
             return true;
         }
     }
@@ -986,29 +994,29 @@ void Engine::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinat
     
     if (AttackVesselFound(x, y)) {
         if (target_vessel->GetStealthStatus()) {
-            human_report = "Attack Unsuccessful!";
-            game_board[y][x+14] = 'X';
+            m_humanReport = "Attack Unsuccessful!";
+            m_gameBoard[y][x+14] = 'X';
         }
         else{
             int new_defense_points = target_vessel->GetDefensePoints()
             - attack_vessel->GetAttackPoints();
-            human_report = "Direct hit!";
+            m_humanReport = "Direct hit!";
             if (new_defense_points <= 0) {
                 target_vessel->UpdateDefensePoints(0);
-                human_report = "Opponent's " + target_vessel->GetVesselName()
+                m_humanReport = "Opponent's " + target_vessel->GetVesselName()
                 + " has been destroyed!";
-                game_board[y][x+14] = '*';
+                m_gameBoard[y][x+14] = '*';
             }
             else{
                 target_vessel->UpdateDefensePoints(new_defense_points);
-                human_report = "Opponent's " + target_vessel->GetVesselName()
+                m_humanReport = "Opponent's " + target_vessel->GetVesselName()
                 + " down to " + std::to_string(target_vessel->GetDefensePoints());
             }
         }
     }
     else{
-        human_report = "Attack unsuccessful!";
-        game_board[y][x+14] = 'X';
+        m_humanReport = "Attack unsuccessful!";
+        m_gameBoard[y][x+14] = 'X';
     }
     target_vessel = nullptr; //Sets targetVessel to nullptr as it is no longer in use.
 }
@@ -1075,19 +1083,19 @@ Vessel* Engine::SelectStealthVessel(){
  ******************************************************/
 void Engine::SetHumanVesselToStealthMode(Vessel* vessel){
     vessel->UpdateStealthStatus(true);
-    human_report = vessel->GetVesselName() + " set to stealth mode Captain.";
+    m_humanReport = vessel->GetVesselName() + " set to stealth mode Captain.";
 }
 
 void Engine::ActivateHumanStealthMode(){
     Vessel* selected_vessel = nullptr;
     
-    if(human->GetStealthMode()){
-        general_report = "You currently have a vessel in stealth mode. Must wait 3 turns to put another vessel in stealth mode.";
+    if(m_human->GetStealthMode()){
+        m_generalReport = "You currently have a vessel in stealth mode. Must wait 3 turns to put another vessel in stealth mode.";
     }
     else{
         selected_vessel = SelectStealthVessel();
         SetHumanVesselToStealthMode(selected_vessel);
-        human->UpdateStealthCount();
+        m_human->UpdateStealthCount();
         std::cin.clear();
         std::cin.ignore();
     }
@@ -1150,7 +1158,7 @@ Vessel* Engine::SetAttackVesselForComputer(){
     Vessel* attack_vessel = nullptr;
     while(true) {
         int random_choice = rand() % 5;
-        attack_vessel = computer->GetVessels()[random_choice];
+        attack_vessel = m_computer->GetVessels()[random_choice];
         if (attack_vessel->GetDefensePoints() == 0) {
             valid_vessel = false;
         }
@@ -1170,7 +1178,7 @@ Vessel* Engine::SetAttackVesselForComputer(){
  Responsibility:
  ******************************************************/
 void Engine::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y){
-    std::vector<Vessel*> human_vessels = human->GetVessels();
+    std::vector<Vessel*> human_vessels = m_human->GetVessels();
     
     for (int i = 0; i < 5; i++){
         if(human_vessels[i]->GetXCoor() == x && human_vessels[i]->GetXCoor() == y){
@@ -1182,20 +1190,20 @@ void Engine::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y){
                 if (new_human_def_points <= 0){
                     new_human_def_points = 0;
                     human_vessels[i]->UpdateSymbol(' ');
-                    computer_report = "The enemy destroyed one of your vessels! Check for damages";
+                    m_computerReport = "The enemy destroyed one of your vessels! Check for damages";
                 }
                 else{
-                    computer_report = "The enemy hit one of your vessels! Check for damages!";
+                    m_computerReport = "The enemy hit one of your vessels! Check for damages!";
                 }
                 human_vessels[i]->UpdateDefensePoints(new_human_def_points);
             }
             else{
-                computer_report = "The enemy attacked a destroyed vessel.";
+                m_computerReport = "The enemy attacked a destroyed vessel.";
                 return;
             }
         }
     }
-    computer_report = "The enemy missed";
+    m_computerReport = "The enemy missed";
 }
 
 
@@ -1212,22 +1220,22 @@ void Engine::ComputerAttack(){
 
 char Engine::CheckForGameWinner(){
     char winner = 'N';
-    if (computer->GetNumOfVessels() == 0) {
+    if (m_computer->GetNumOfVessels() == 0) {
         winner = 'H';
     }
-    else if(human->GetNumOfVessels() == 0){
+    else if(m_human->GetNumOfVessels() == 0){
         winner = 'C';
     }
     return winner;
 }
 
 Player* Engine::GetHumanPlayer(){
-    return human;
+    return m_human;
 }
 
 
 Player* Engine::GetComputerPlayer(){
-    return computer;
+    return m_computer;
 }
 
 
@@ -1251,21 +1259,21 @@ char Engine::SelectDashboardOption(){
 
 
 void Engine::UpdateGeneralReport(std::string general_report){
-    this->general_report = general_report;
+    this->m_generalReport = general_report;
 }
 
 
 void Engine::UpdateHumanReport(std::string human_report){
-    this->human_report = human_report;
+    this->m_humanReport = human_report;
 }
 
 
 void Engine::UpdateComputerReport(std::string computer_report){
-    this->computer_report = computer_report;
+    this->m_computerReport = computer_report;
 }
 
 std::string Engine::GetReport(){
-    return general_report;
+    return m_generalReport;
 }
 
 void Engine::DisplayInstructions(){
@@ -1342,20 +1350,20 @@ void Engine::HumanTurnSequence(char* action){
             break;
         }
     }
-    if(human->GetStealthCount() >= 3){
-        human->UpdateStealthMode(false);
-        human->GetCurrentStealthVessel()->UpdateStealthStatus(false);
-        human->UpdateStealthCount();
+    if(m_human->GetStealthCount() >= 3){
+        m_human->UpdateStealthMode(false);
+        m_human->GetCurrentStealthVessel()->UpdateStealthStatus(false);
+        m_human->UpdateStealthCount();
     }
     else{
-        human->UpdateStealthCount();
+        m_human->UpdateStealthCount();
     }
 }
 
 
 void Engine::ResetStealthVessel(){
-    human->GetCurrentStealthVessel()->UpdateStealthStatus(false);
-    human->UpdateCurrentStealthVessel(nullptr);
+    m_human->GetCurrentStealthVessel()->UpdateStealthStatus(false);
+    m_human->UpdateCurrentStealthVessel(nullptr);
 }
 
 
@@ -1364,19 +1372,19 @@ void Engine::ResetStealthVessel(){
  ******************************************************/
 Vessel* Engine::GetSelectedVessel(char vessel){
     if (vessel == 'A') {
-        return human->GetVessels()[0];
+        return m_human->GetVessels()[0];
     }
     else if (vessel == 'B') {
-        return human->GetVessels()[1];
+        return m_human->GetVessels()[1];
     }
     else if (vessel == 'C') {
-        return human->GetVessels()[2];
+        return m_human->GetVessels()[2];
     }
     else if (vessel == 'D') {
-        return human->GetVessels()[3];
+        return m_human->GetVessels()[3];
     }
     else{
-        return human->GetVessels()[4];
+        return m_human->GetVessels()[4];
     }
 }
 

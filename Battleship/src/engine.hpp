@@ -16,12 +16,18 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "BS_Utilities.hpp"
+#include "utilities/BS_Utilities.hpp"
+
 #include "Player.hpp"
 
 class Engine{
 public:
-    Engine(Player* player1, Player* player2);
+    Engine();
+
+	/*!
+		Destructor - Clean up any dynamic memory
+	 */
+	~Engine();
     
     void SetupMarquee();
     void DisplayMarquee_();
@@ -82,7 +88,6 @@ public:
     
     void ResetStealthVessel();
     Vessel* GetSelectedVessel(char vessel);
-    ~Engine();
     
     //Battleship landing page sign.
     void row0(int row, int col);
@@ -99,15 +104,17 @@ public:
     
 private:
     //These are data members used to build the main structure of the game.
-    char** marquee = nullptr;
-    const int ROW = 11, COL = 68;
-    char** game_board = nullptr;
-    const int GBROW = 8, GBCOL = 26;
-    Player* human = nullptr;
-    Player* computer = nullptr;
-    std::string human_report;
-    std::string computer_report;
-    std::string general_report;
+	const int m_signRow;
+	const int m_signCol;
+	const int m_boardRow;
+	const int m_boardCol;
+    char** m_sign = nullptr;
+    char** m_gameBoard = nullptr;
+    Player* m_human = nullptr;
+    Player* m_computer = nullptr;
+    std::string m_humanReport;
+    std::string m_computerReport;
+    std::string m_generalReport;
     
     
     

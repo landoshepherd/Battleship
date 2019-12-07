@@ -1,2 +1,0 @@
-/Users/landoshepherd/Documents/Projects/Battleship/build/CMakeFiles/rebuild_cache.dir
-/Users/landoshepherd/Documents/Projects/Battleship/build/CMakeFiles/edit_cache.dir
