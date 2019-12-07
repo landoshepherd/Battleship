@@ -19,9 +19,9 @@
 #include "BS_Utilities.hpp"
 #include "Player.hpp"
 
-class BSComponent{
+class Engine{
 public:
-    BSComponent(Player* player1, Player* player2);
+    Engine(Player* player1, Player* player2);
     
     void SetupMarquee();
     void DisplayMarquee_();
@@ -44,9 +44,9 @@ public:
     void DisplayDashboard();
     
     
-    /******************************************************
-     Functions for Human Attack Sequence
-     ******************************************************/
+    /*!
+		Functions for Human Attack Sequence
+	*/
     void HumanTurnSequence(char* action);
     char SelectDashboardOption();
     void HumanAttack();
@@ -64,15 +64,7 @@ public:
      ******************************************************/
     Vessel* SetAttackVesselForComputer();
     void InitiateComputerAttack(Vessel* attackingVessel, int x, int y);
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     bool VesselDestroyed(Vessel* vessel); //Generic Function
     void ComputerAttack();
     char CheckForGameWinner();
@@ -90,7 +82,7 @@ public:
     
     void ResetStealthVessel();
     Vessel* GetSelectedVessel(char vessel);
-    ~BSComponent();
+    ~Engine();
     
     //Battleship landing page sign.
     void row0(int row, int col);

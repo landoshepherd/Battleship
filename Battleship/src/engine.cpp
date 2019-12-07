@@ -6,9 +6,9 @@
 //  Copyright © 2018 Lando Shepherd. All rights reserved.
 //
 
-#include "Game_Components.hpp"
+#include "engine.hpp"
 
-BSComponent::BSComponent(Player* player1, Player* player2){
+Engine::Engine(Player* player1, Player* player2){
     srand(unsigned(time(0)));
     human = player1;
     computer = player2;
@@ -42,7 +42,7 @@ BSComponent::BSComponent(Player* player1, Player* player2){
 /******************************************************
  Responsibility:
  ******************************************************/
-void BSComponent::row0(int i, int j){
+void Engine::row0(int i, int j){
     if(j >= 0 && j <= 4){
         marquee[i][j] = '*';
     }
@@ -88,7 +88,7 @@ void BSComponent::row0(int i, int j){
     }
 }
 
-void BSComponent::row1(int i, int j){
+void Engine::row1(int i, int j){
     if(j >= 0 && j <= 5){
         marquee[i][j] = '*';
     }
@@ -134,7 +134,7 @@ void BSComponent::row1(int i, int j){
     }
 }
 
-void BSComponent::row2(int i, int j){
+void Engine::row2(int i, int j){
     if(j >= 0 && j <= 1){
         marquee[i][j] = '*';
     }
@@ -192,7 +192,7 @@ void BSComponent::row2(int i, int j){
     }
 }
 
-void BSComponent::row3(int i, int j){
+void Engine::row3(int i, int j){
     if(j >= 0 && j <= 1){
         marquee[i][j] = '*';
     }
@@ -250,7 +250,7 @@ void BSComponent::row3(int i, int j){
     }
 }
 
-void BSComponent::row4(int i, int j){
+void Engine::row4(int i, int j){
     if(j >= 0 && j <= 5){
         marquee[i][j] = '*';
     }
@@ -296,7 +296,7 @@ void BSComponent::row4(int i, int j){
     }
 }
 
-void BSComponent::row5(int i, int j){
+void Engine::row5(int i, int j){
     if(j >= 0 && j <= 4){
         marquee[i][j] = '*';
     }
@@ -338,7 +338,7 @@ void BSComponent::row5(int i, int j){
     }
 }
 
-void BSComponent::row6(int i, int j){
+void Engine::row6(int i, int j){
     if(j >= 0 && j <= 5){
         marquee[i][j] = '*';
     }
@@ -384,7 +384,7 @@ void BSComponent::row6(int i, int j){
     }
 }
 
-void BSComponent::row7(int i, int j){
+void Engine::row7(int i, int j){
     if(j >= 0 && j <= 1){
         marquee[i][j] = '*';
     }
@@ -438,7 +438,7 @@ void BSComponent::row7(int i, int j){
     }
 }
 
-void BSComponent::row8(int i, int j){
+void Engine::row8(int i, int j){
     if(j >= 0 && j <= 1){
         marquee[i][j] = '*';
     }
@@ -492,7 +492,7 @@ void BSComponent::row8(int i, int j){
     }
 }
 
-void BSComponent::row9(int i, int j){
+void Engine::row9(int i, int j){
     if(j >= 0 && j <= 5){
         marquee[i][j] = '*';
     }
@@ -542,7 +542,7 @@ void BSComponent::row9(int i, int j){
     }
 }
 
-void BSComponent::row10(int i, int j){
+void Engine::row10(int i, int j){
     if(j >= 0 && j <= 4){
         marquee[i][j] = '*';
     }
@@ -593,7 +593,7 @@ void BSComponent::row10(int i, int j){
 }
 
 
-void BSComponent::SetupMarquee(){
+void Engine::SetupMarquee(){
     for(int i = 0; i < ROW; i++){
         for(int j = 0; j < COL; j++){
             if(i == 0)
@@ -645,7 +645,7 @@ void BSComponent::SetupMarquee(){
 }
 
 //Displays "Battleship" sign.
-void BSComponent::DisplayMarquee_(){
+void Engine::DisplayMarquee_(){
     for (int i = 0; i < ROW; i++) {
         for(int j = 0; j < COL; j++){
             std::cout << marquee[i][j];
@@ -659,7 +659,7 @@ void BSComponent::DisplayMarquee_(){
 }
 
 
-void BSComponent::PrintMainMenu(){
+void Engine::PrintMainMenu(){
     SetupMarquee();
     DisplayMarquee_();
     std::cout << "[A] Play Battleship\n";
@@ -675,7 +675,7 @@ void BSComponent::PrintMainMenu(){
  
  Return: Char value of the user's choice.
  ******************************************************/
-char BSComponent::MainMenu(){
+char Engine::MainMenu(){
     std::string user_input;
     PrintMainMenu();
     
@@ -697,7 +697,7 @@ char BSComponent::MainMenu(){
  
  Return: Nothing
  ******************************************************/
-void BSComponent::BuildGameBoard(){
+void Engine::BuildGameBoard(){
     for (int i = 0; i < GBROW; i++) {
         for(int j = 0; j < GBCOL; j++){
             if(i == 0){
@@ -741,7 +741,7 @@ void BSComponent::BuildGameBoard(){
     }
 }
 
-void BSComponent::PrintGameBoard(){
+void Engine::PrintGameBoard(){
     std::cout << std::endl;
     for (auto i = 0; i < GBROW; i++) {
         for(int j = 0; j < GBCOL; j++){
@@ -757,7 +757,7 @@ void BSComponent::PrintGameBoard(){
  
  Return: Nothing
  ******************************************************/
-void BSComponent::DisplayVessels(){
+void Engine::DisplayVessels(){
     std::vector<Vessel*> vessels = human->GetVessels();
     char letter = 65;
     for (int i = 0; i < vessels.size(); i++){
@@ -777,14 +777,14 @@ void BSComponent::DisplayVessels(){
  
  Return: Nothing
  ******************************************************/
-void BSComponent::ClearReports(){
+void Engine::ClearReports(){
     human_report = " ";
     computer_report = " ";
     general_report = " ";
 }
 
 
-void BSComponent::DisplayDashboard(){
+void Engine::DisplayDashboard(){
     BSUtilities::ClearScreen();
     PrintGameBoard();
     std::cout << std::right << std::setw(9) << "You\t" << "Computer" << std::endl;
@@ -814,7 +814,7 @@ void BSComponent::DisplayDashboard(){
  
  Return: True if space is available and false if not.
  ******************************************************/
-bool BSComponent::SpaceAvailable(std::vector<Vessel*> vessels, int x, int y){
+bool Engine::SpaceAvailable(std::vector<Vessel*> vessels, int x, int y){
     int usedX, usedY;
     if(vessels.size() == 0){
         return true;
@@ -837,7 +837,7 @@ bool BSComponent::SpaceAvailable(std::vector<Vessel*> vessels, int x, int y){
  
  Return: Nothing
  ******************************************************/
-void BSComponent::DeployComputerVessels(){
+void Engine::DeployComputerVessels(){
     int x = 0,y = 0;
     for (int i = 0; i < 5; i++) {
         while(true) {
@@ -863,7 +863,7 @@ void BSComponent::DeployComputerVessels(){
  
  Return: Returns x coordinate as integer.
  ******************************************************/
-int BSComponent::SetXCoorHumanVessel(Vessel* vessel){
+int Engine::SetXCoorHumanVessel(Vessel* vessel){
     std::string unvalidatedX;
     int validatedX;
     while(true) {
@@ -889,7 +889,7 @@ int BSComponent::SetXCoorHumanVessel(Vessel* vessel){
  
  Return: Returns y coordinate as integer.
  ******************************************************/
-int BSComponent::SetYCoorHumanVessel(Vessel* vessel){
+int Engine::SetYCoorHumanVessel(Vessel* vessel){
     std::string unvalidatedY;
     int validatedY;
     while(true) {
@@ -913,7 +913,7 @@ int BSComponent::SetYCoorHumanVessel(Vessel* vessel){
  
  Return: Nothing
  ******************************************************/
-void BSComponent::DeployHumanVessels(){
+void Engine::DeployHumanVessels(){
     int x = 0, y = 0;
     Vessel* temp_vessel_ptr = nullptr;
     
@@ -947,7 +947,7 @@ void BSComponent::DeployHumanVessels(){
  
  Return: True if destroyed false if not destroyed.
  ******************************************************/
-bool BSComponent::VesselDestroyed(Vessel* vessel){
+bool Engine::VesselDestroyed(Vessel* vessel){
     if(vessel->GetDefensePoints() <= 0){
         return false;
     }
@@ -964,7 +964,7 @@ bool BSComponent::VesselDestroyed(Vessel* vessel){
  Return: True if matching coordinates are found and
  false if matching coordinates are not found.
  ******************************************************/
-bool BSComponent::AttackVesselFound(int x, int y){
+bool Engine::AttackVesselFound(int x, int y){
     //Loop through list of vessels using XY coordinates to locate a vessel.
     for (int i = 0; i < computer->GetVessels().size(); i++) {
         if(computer->GetVessels()[i]->GetXCoor() == x && computer->GetVessels()[i]->GetYCoor() == y){
@@ -978,7 +978,7 @@ bool BSComponent::AttackVesselFound(int x, int y){
 /******************************************************
  Responsibility:
  ******************************************************/
-void BSComponent::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinate, Vessel* attack_vessel){
+void Engine::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinate, Vessel* attack_vessel){
     Vessel* target_vessel = nullptr;
     int y = std::stoi(yCoordinate);
     int x = std::stoi(xCoordinate);
@@ -1016,7 +1016,7 @@ void BSComponent::InitiateHumanAttack(std::string xCoordinate, std::string yCoor
 /******************************************************
  Responsibility:
  ******************************************************/
-char BSComponent::SetHumanAttackVessel(){
+char Engine::SetHumanAttackVessel(){
     std::string raw_input;
     char vessel_selection = '\0';
     bool valid_vessel_selection;
@@ -1044,7 +1044,7 @@ char BSComponent::SetHumanAttackVessel(){
 /******************************************************
  Responsibility:
  ******************************************************/
-Vessel* BSComponent::SelectStealthVessel(){
+Vessel* Engine::SelectStealthVessel(){
     std::string raw_input;
     char vessel_selection = '\0';
     bool valid_input = true;
@@ -1073,12 +1073,12 @@ Vessel* BSComponent::SelectStealthVessel(){
 /******************************************************
  Responsibility:
  ******************************************************/
-void BSComponent::SetHumanVesselToStealthMode(Vessel* vessel){
+void Engine::SetHumanVesselToStealthMode(Vessel* vessel){
     vessel->UpdateStealthStatus(true);
     human_report = vessel->GetVesselName() + " set to stealth mode Captain.";
 }
 
-void BSComponent::ActivateHumanStealthMode(){
+void Engine::ActivateHumanStealthMode(){
     Vessel* selected_vessel = nullptr;
     
     if(human->GetStealthMode()){
@@ -1099,7 +1099,7 @@ void BSComponent::ActivateHumanStealthMode(){
 /******************************************************
  Responsibility:
  ******************************************************/
-void BSComponent::SetAttackCoordinates(std::string& x_coor, std::string& y_coor){
+void Engine::SetAttackCoordinates(std::string& x_coor, std::string& y_coor){
     bool valid_x_coordinate = false;
     bool valid_y_coordinate = false;
     std::string raw_input;
@@ -1130,7 +1130,7 @@ void BSComponent::SetAttackCoordinates(std::string& x_coor, std::string& y_coor)
  Responsibility: Performs all routine and subroutines
  to complete a successful attack on the opponent. 
  ******************************************************/
-void BSComponent::HumanAttack(){
+void Engine::HumanAttack(){
     //SetHumanAttackVessel returns a character input by the user to select which vessel will be used for the attack.
     Vessel* attack_vessel = GetSelectedVessel(SetHumanAttackVessel());
     
@@ -1145,7 +1145,7 @@ void BSComponent::HumanAttack(){
 /******************************************************
  Responsibility:
  ******************************************************/
-Vessel* BSComponent::SetAttackVesselForComputer(){
+Vessel* Engine::SetAttackVesselForComputer(){
     bool valid_vessel = false;
     Vessel* attack_vessel = nullptr;
     while(true) {
@@ -1169,7 +1169,7 @@ Vessel* BSComponent::SetAttackVesselForComputer(){
 /******************************************************
  Responsibility:
  ******************************************************/
-void BSComponent::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y){
+void Engine::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y){
     std::vector<Vessel*> human_vessels = human->GetVessels();
     
     for (int i = 0; i < 5; i++){
@@ -1202,7 +1202,7 @@ void BSComponent::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y)
 /******************************************************
  Responsibility:
  ******************************************************/
-void BSComponent::ComputerAttack(){
+void Engine::ComputerAttack(){
     int x_coor = rand() % 10 + 1;
     int y_coor = rand() % 14 + 1;
     Vessel* com_attack_vessel = SetAttackVesselForComputer();
@@ -1210,7 +1210,7 @@ void BSComponent::ComputerAttack(){
     com_attack_vessel = nullptr;
 }
 
-char BSComponent::CheckForGameWinner(){
+char Engine::CheckForGameWinner(){
     char winner = 'N';
     if (computer->GetNumOfVessels() == 0) {
         winner = 'H';
@@ -1221,12 +1221,12 @@ char BSComponent::CheckForGameWinner(){
     return winner;
 }
 
-Player* BSComponent::GetHumanPlayer(){
+Player* Engine::GetHumanPlayer(){
     return human;
 }
 
 
-Player* BSComponent::GetComputerPlayer(){
+Player* Engine::GetComputerPlayer(){
     return computer;
 }
 
@@ -1234,7 +1234,7 @@ Player* BSComponent::GetComputerPlayer(){
 /******************************************************
  Responsibility:
  ******************************************************/
-char BSComponent::SelectDashboardOption(){
+char Engine::SelectDashboardOption(){
     std::string raw_input;
     bool valid_selection;
     while(true) {
@@ -1250,25 +1250,25 @@ char BSComponent::SelectDashboardOption(){
 }
 
 
-void BSComponent::UpdateGeneralReport(std::string general_report){
+void Engine::UpdateGeneralReport(std::string general_report){
     this->general_report = general_report;
 }
 
 
-void BSComponent::UpdateHumanReport(std::string human_report){
+void Engine::UpdateHumanReport(std::string human_report){
     this->human_report = human_report;
 }
 
 
-void BSComponent::UpdateComputerReport(std::string computer_report){
+void Engine::UpdateComputerReport(std::string computer_report){
     this->computer_report = computer_report;
 }
 
-std::string BSComponent::GetReport(){
+std::string Engine::GetReport(){
     return general_report;
 }
 
-void BSComponent::DisplayInstructions(){
+void Engine::DisplayInstructions(){
     BSUtilities::ClearScreen();
     std::string message;
     message = "How to play:\n";
@@ -1302,7 +1302,7 @@ void BSComponent::DisplayInstructions(){
 /******************************************************
  Responsibility:
  ******************************************************/
-char BSComponent::ActivateHowToMenu(){
+char Engine::ActivateHowToMenu(){
     std::string action;
     DisplayInstructions();
     while(true){
@@ -1320,7 +1320,7 @@ char BSComponent::ActivateHowToMenu(){
 /******************************************************
  Responsibility:
  ******************************************************/
-void BSComponent::HumanTurnSequence(char* action){
+void Engine::HumanTurnSequence(char* action){
     char user_input;
     bool attack_launched = false;
     
@@ -1353,7 +1353,7 @@ void BSComponent::HumanTurnSequence(char* action){
 }
 
 
-void BSComponent::ResetStealthVessel(){
+void Engine::ResetStealthVessel(){
     human->GetCurrentStealthVessel()->UpdateStealthStatus(false);
     human->UpdateCurrentStealthVessel(nullptr);
 }
@@ -1362,7 +1362,7 @@ void BSComponent::ResetStealthVessel(){
 /******************************************************
  Responsibility:
  ******************************************************/
-Vessel* BSComponent::GetSelectedVessel(char vessel){
+Vessel* Engine::GetSelectedVessel(char vessel){
     if (vessel == 'A') {
         return human->GetVessels()[0];
     }
@@ -1380,5 +1380,5 @@ Vessel* BSComponent::GetSelectedVessel(char vessel){
     }
 }
 
-BSComponent::~BSComponent(){
+Engine::~Engine(){
 }
