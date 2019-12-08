@@ -16,6 +16,8 @@ namespace landingScreen
 	class GameMenu
 	{
 		public:
+			GameMenu();
+			~GameMenu();
 			char MainMenu();
 			void printMainMenu();
 

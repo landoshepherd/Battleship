@@ -8,12 +8,23 @@
 
 #include "landingscreen.hpp"
 
+#include "utilities/BS_Utilities.hpp"
+
 char landingScreen::GameMenu::MainMenu()
 {
+	std::string user_input;
+	printMainMenu();
 
+	while(true){
+		std::getline(std::cin, user_input);
+		if(BSValidator::validateMainMenu(user_input)){
+			break;
+		}
+	}
+	return toupper(user_input[0]);
 }
 
-void landingScreen::GameMenu::PrintMainMenu()
+void landingScreen::GameMenu::printMainMenu()
 {
 
 	std::cout << "[A] Play Battleship\n";
@@ -25,8 +36,8 @@ landingScreen::GameSign::GameSign():
 					mainMenu(new GameMenu),
 					m_signRow(11),
 					m_signCol(68),
-					m_sign(new char*[m_signRow]),
-					m_gameBoard(new char*[m_boardRow])
+					m_sign(new char*[m_signRow])
+
 {}
 
 landingScreen::GameSign::~GameSign()

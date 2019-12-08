@@ -10,70 +10,34 @@
 
 namespace engine
 {
+	Dashboard::Dashboard()
+	{
+
+	}
+
+	Dashboard::~Dashboard()
+	{
+
+	}
+
 	void Dashboard::initialize()
 	{
-		for(int i = 0; i < m_boardRow; i++){
-			m_gameBoard[i] = new char [m_boardCol];
-		}
 
-		for(int i = 0; i < m_boardRow; i++){
-			for(int j = 0; j < m_boardCol; j++){
-				m_gameBoard[i][j] = ' ';
-			}
-		}
 	}
 
-	Engine::Engine():
-		gameSign(new landingScreen::GameSign),
-		dashboard(new Dashboard),
-		m_human(new Player),
-		m_computer(new Player),
-		m_humanReport("Nothing to report"),
-		m_computerReport("Nothing to report"),
-		m_generalReport("")
+	void Dashboard::displayHumanVessels()
 	{
-	}
-
-	Engine::~Engine()
-	{
-	}
-
-	void Engine::initialize()
-	{
-		srand(unsigned(time(0)));
-
-		//Creates the game banner
-		gameSign->initialize();
-		dashboard->initialize();
-	}
-
-
-	void Engine::PrintMainMenu(){
-		
-	}
-
-
-	/******************************************************
-	 Responsibility: Main menu controls. Prints the main
-	 menu and prompts the user to select to start the game,
-	 view game instructions or to quit the game.
-
-	 Return: Char value of the user's choice.
-	 ******************************************************/
-	char Engine::MainMenu(){
-		std::string user_input;
-		PrintMainMenu();
-
-		while(true){
-			std::getline(std::cin, user_input);
-			if(BSValidator::validateMainMenu(user_input)){
-				break;
-			}
+		std::vector<Vessel*> vessels(m_human->GetVessels());
+		char letter = 65;
+		for (int i = 0; i < vessels.size(); i++){
+			std::cout << "[" << letter << "] " << vessels[i]->GetVesselName() << "\t"
+			<< vessels[i]->GetAttackPoints() << "\t"
+			<< vessels[i]->GetDefensePoints() << "%"
+			<< std::right << std::setw(8)
+			<< vessels[i]->GetStealthIndicator() << std::endl;
+			letter++;
 		}
-		return toupper(user_input[0]);
 	}
-
-
 
 	/******************************************************
 	 Responsibility: Populates the 2-dimensional array that
@@ -82,7 +46,7 @@ namespace engine
 
 	 Return: Nothing
 	 ******************************************************/
-	void Engine::BuildGameBoard(){
+	void Dashboard::buildGameBoard(){
 		for (int i = 0; i < m_boardRow; i++) {
 			for(int j = 0; j < m_boardCol; j++){
 				if(i == 0){
@@ -126,7 +90,7 @@ namespace engine
 		}
 	}
 
-	void Engine::PrintGameBoard(){
+	void Dashboard::printGameBoard(){
 		std::cout << std::endl;
 		for (auto i = 0; i < m_boardRow; i++) {
 			for(int j = 0; j < m_boardCol; j++){
@@ -136,22 +100,61 @@ namespace engine
 		}
 	}
 
-	/******************************************************
-	 Responsibility: Displays the attack points, current
-	 defense points and stealth indicator.
+	void Dashboard::displayDashboard(){
+		BSUtilities::ClearScreen();
+		printGameBoard();
+		std::cout << std::right << std::setw(9) << "You\t" << "Computer" << std::endl;
+		std::cout << std::endl;
+		std::cout << std::left << std::setw(13) << "Vessels";
+		std::cout << std::left << std::setw(9) << "Atk Pts";
+		std::cout << std::left << std::setw(9) << "Shields";
+		std::cout << "Stealth\n";
+		std::cout << "****************************************\n";
+		displayHumanVessels();
+		std::cout << std::endl;
+		std::cout << "AI Assistant: " + m_humanReport + "\n";
+		std::cout << m_generalReport << "\n";
+		std::cout << m_computerReport << "\n\n";
+		std::cout << "Select your next action from the choices below:" << std::endl;
+		std::cout << "[L] Launch Attack\t";
+		std::cout << "[S] Activate Stealth\t";
+		std::cout << "[Q] Quit" << std::endl;
+		clearReports();
+	}
 
-	 Return: Nothing
-	 ******************************************************/
-	void Engine::DisplayVessels(){
-		std::vector<Vessel*> vessels = m_human->GetVessels();
-		char letter = 65;
-		for (int i = 0; i < vessels.size(); i++){
-			std::cout << "[" << letter << "] " << vessels[i]->GetVesselName() << "\t"
-			<< vessels[i]->GetAttackPoints() << "\t"
-			<< vessels[i]->GetDefensePoints() << "%"
-			<< std::right << std::setw(8)
-			<< vessels[i]->GetStealthIndicator() << std::endl;
-			letter++;
+	Engine::Engine():
+		m_gameSign(new landingScreen::GameSign),
+		m_dashboard(new Dashboard),
+		m_human(new Player),
+		m_computer(new Player),
+		m_boardRow(8),
+		m_boardCol(26),
+		m_gameBoard(new char*[m_boardRow]),
+		m_humanReport("Nothing to report"),
+		m_computerReport("Nothing to report"),
+		m_generalReport("")
+	{
+	}
+
+	Engine::~Engine()
+	{
+	}
+
+	void Engine::initialize()
+	{
+		srand(unsigned(time(0)));
+
+		//Creates the game banner
+		m_gameSign->initialize();
+
+		for(int i = 0; i < m_boardRow; i++){
+			m_gameBoard[i] = new char [m_boardCol];
+		}
+
+		for(int i = 0; i < m_boardRow; i++){
+			for(int j = 0; j < m_boardCol; j++){
+				m_gameBoard[i][j] = ' ';
+			}
 		}
 	}
 
@@ -162,34 +165,14 @@ namespace engine
 
 	 Return: Nothing
 	 ******************************************************/
-	void Engine::ClearReports(){
+	void Engine::clearReports(){
 		m_humanReport = " ";
 		m_computerReport = " ";
 		m_generalReport = " ";
 	}
 
 
-	void Engine::DisplayDashboard(){
-		BSUtilities::ClearScreen();
-		PrintGameBoard();
-		std::cout << std::right << std::setw(9) << "You\t" << "Computer" << std::endl;
-		std::cout << std::endl;
-		std::cout << std::left << std::setw(13) << "Vessels";
-		std::cout << std::left << std::setw(9) << "Atk Pts";
-		std::cout << std::left << std::setw(9) << "Shields";
-		std::cout << "Stealth\n";
-		std::cout << "****************************************\n";
-		DisplayVessels();
-		std::cout << std::endl;
-		std::cout << "AI Assistant: " + m_humanReport + "\n";
-		std::cout << m_generalReport << "\n";
-		std::cout << m_computerReport << "\n\n";
-		std::cout << "Select your next action from the choices below:" << std::endl;
-		std::cout << "[L] Launch Attack\t";
-		std::cout << "[S] Activate Stealth\t";
-		std::cout << "[Q] Quit" << std::endl;
-		ClearReports();
-	}
+
 
 
 	/******************************************************
@@ -199,7 +182,7 @@ namespace engine
 
 	 Return: True if space is available and false if not.
 	 ******************************************************/
-	bool Engine::SpaceAvailable(std::vector<Vessel*> vessels, int x, int y){
+	bool Engine::spaceAvailable(std::vector<Vessel*> vessels, int x, int y){
 		int usedX, usedY;
 		if(vessels.size() == 0){
 			return true;
@@ -222,13 +205,13 @@ namespace engine
 
 	 Return: Nothing
 	 ******************************************************/
-	void Engine::DeployComputerVessels(){
+	void Engine::deployComputerVessels(){
 		int x = 0,y = 0;
 		for (int i = 0; i < 5; i++) {
 			while(true) {
 				x = rand() % 10 + 1;
 				y = rand() % 6 + 1;
-				bool valid_space = SpaceAvailable(m_computer->GetVessels(), x, y);
+				bool valid_space = spaceAvailable(m_computer->GetVessels(), x, y);
 				if(valid_space){
 					m_computer->GetVessels()[i]->UpdateXCoor(x);
 					m_computer->GetVessels()[i]->UpdateYCoor(y);
@@ -248,7 +231,7 @@ namespace engine
 
 	 Return: Returns x coordinate as integer.
 	 ******************************************************/
-	int Engine::SetXCoorHumanVessel(Vessel* vessel){
+	int Engine::setXCoorHumanVessel(Vessel* vessel){
 		std::string unvalidatedX;
 		int validatedX;
 		while(true) {
@@ -274,7 +257,7 @@ namespace engine
 
 	 Return: Returns y coordinate as integer.
 	 ******************************************************/
-	int Engine::SetYCoorHumanVessel(Vessel* vessel){
+	int Engine::setYCoorHumanVessel(Vessel* vessel){
 		std::string unvalidatedY;
 		int validatedY;
 		while(true) {
@@ -298,7 +281,7 @@ namespace engine
 
 	 Return: Nothing
 	 ******************************************************/
-	void Engine::DeployHumanVessels(){
+	void Engine::deployHumanVessels(){
 		int x = 0, y = 0;
 		Vessel* temp_vessel_ptr = nullptr;
 
@@ -306,10 +289,10 @@ namespace engine
 		for (int i = 0; i < 5; i++) {
 			temp_vessel_ptr = m_human->GetVessels()[i];
 			while(true){
-				x = SetXCoorHumanVessel(temp_vessel_ptr);
-				y = SetYCoorHumanVessel(temp_vessel_ptr);
+				x = setXCoorHumanVessel(temp_vessel_ptr);
+				y = setYCoorHumanVessel(temp_vessel_ptr);
 
-				if(SpaceAvailable(m_human->GetVessels(), x, y)){
+				if(spaceAvailable(m_human->GetVessels(), x, y)){
 					temp_vessel_ptr->UpdateXCoor(x);
 					temp_vessel_ptr->UpdateYCoor(y);
 					m_gameBoard[y][x] = temp_vessel_ptr->GetSymbol();
@@ -332,7 +315,7 @@ namespace engine
 
 	 Return: True if destroyed false if not destroyed.
 	 ******************************************************/
-	bool Engine::VesselDestroyed(Vessel* vessel){
+	bool Engine::vesselDestroyed(Vessel* vessel){
 		if(vessel->GetDefensePoints() <= 0){
 			return false;
 		}
@@ -349,7 +332,7 @@ namespace engine
 	 Return: True if matching coordinates are found and
 	 false if matching coordinates are not found.
 	 ******************************************************/
-	bool Engine::AttackVesselFound(int x, int y){
+	bool Engine::attackVesselFound(int x, int y){
 		//Loop through list of vessels using XY coordinates to locate a vessel.
 		for (int i = 0; i < m_computer->GetVessels().size(); i++) {
 			if(m_computer->GetVessels()[i]->GetXCoor() == x && m_computer->GetVessels()[i]->GetYCoor() == y){
@@ -363,13 +346,13 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	void Engine::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinate, Vessel* attack_vessel){
+	void Engine::initiateHumanAttack(std::string xCoordinate, std::string yCoordinate, Vessel* attack_vessel){
 		Vessel* target_vessel = nullptr;
 		int y = std::stoi(yCoordinate);
 		int x = std::stoi(xCoordinate);
 
 
-		if (AttackVesselFound(x, y)) {
+		if (attackVesselFound(x, y)) {
 			if (target_vessel->GetStealthStatus()) {
 				m_humanReport = "Attack Unsuccessful!";
 				m_gameBoard[y][x+14] = 'X';
@@ -401,7 +384,7 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	char Engine::SetHumanAttackVessel(){
+	char Engine::setHumanAttackVessel(){
 		std::string raw_input;
 		char vessel_selection = '\0';
 		bool valid_vessel_selection;
@@ -413,8 +396,8 @@ namespace engine
 			valid_vessel_selection = BSValidator::validateVesselSelection(raw_input);
 			if (valid_vessel_selection == true) {
 				vessel_selection = toupper(raw_input[0]);
-				temp_vessel_ptr = GetSelectedVessel(vessel_selection);
-				if (VesselDestroyed(temp_vessel_ptr) == true) {
+				temp_vessel_ptr = getSelectedVessel(vessel_selection);
+				if (vesselDestroyed(temp_vessel_ptr) == true) {
 					valid_vessel_selection = false;
 				}
 			}
@@ -429,7 +412,7 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	Vessel* Engine::SelectStealthVessel(){
+	Vessel* Engine::selectStealthVessel(){
 		std::string raw_input;
 		char vessel_selection = '\0';
 		bool valid_input = true;
@@ -443,13 +426,13 @@ namespace engine
 			//Checks if input is valid
 			if (valid_input) {
 				vessel_selection = toupper(raw_input[0]);
-				temp_vessel_ptr = GetSelectedVessel(vessel_selection);
-				if (VesselDestroyed(temp_vessel_ptr)) {
+				temp_vessel_ptr = getSelectedVessel(vessel_selection);
+				if (vesselDestroyed(temp_vessel_ptr)) {
 					valid_input = false;
 				}
 				else{
 					temp_vessel_ptr = nullptr;
-					return GetSelectedVessel(vessel_selection);
+					return getSelectedVessel(vessel_selection);
 				}
 			}
 		}
@@ -458,20 +441,20 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	void Engine::SetHumanVesselToStealthMode(Vessel* vessel){
+	void Engine::setHumanVesselToStealthMode(Vessel* vessel){
 		vessel->UpdateStealthStatus(true);
 		m_humanReport = vessel->GetVesselName() + " set to stealth mode Captain.";
 	}
 
-	void Engine::ActivateHumanStealthMode(){
+	void Engine::activateHumanStealthMode(){
 		Vessel* selected_vessel = nullptr;
 
 		if(m_human->GetStealthMode()){
 			m_generalReport = "You currently have a vessel in stealth mode. Must wait 3 turns to put another vessel in stealth mode.";
 		}
 		else{
-			selected_vessel = SelectStealthVessel();
-			SetHumanVesselToStealthMode(selected_vessel);
+			selected_vessel = selectStealthVessel();
+			setHumanVesselToStealthMode(selected_vessel);
 			m_human->UpdateStealthCount();
 			std::cin.clear();
 			std::cin.ignore();
@@ -484,7 +467,7 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	void Engine::SetAttackCoordinates(std::string& x_coor, std::string& y_coor){
+	void Engine::setAttackCoordinates(std::string& x_coor, std::string& y_coor){
 		bool valid_x_coordinate = false;
 		bool valid_y_coordinate = false;
 		std::string raw_input;
@@ -515,14 +498,14 @@ namespace engine
 	 Responsibility: Performs all routine and subroutines
 	 to complete a successful attack on the opponent.
 	 ******************************************************/
-	void Engine::HumanAttack(){
+	void Engine::humanAttack(){
 		//SetHumanAttackVessel returns a character input by the user to select which vessel will be used for the attack.
-		Vessel* attack_vessel = GetSelectedVessel(SetHumanAttackVessel());
+		Vessel* attack_vessel = getSelectedVessel(setHumanAttackVessel());
 
 		std::string x_coordinate;
 		std::string y_coordinate;
-		SetAttackCoordinates(x_coordinate, y_coordinate);
-		InitiateHumanAttack(x_coordinate, y_coordinate, attack_vessel);
+		setAttackCoordinates(x_coordinate, y_coordinate);
+		initiateHumanAttack(x_coordinate, y_coordinate, attack_vessel);
 		attack_vessel = nullptr;
 	}
 
@@ -530,7 +513,7 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	Vessel* Engine::SetAttackVesselForComputer(){
+	Vessel* Engine::setAttackVesselForComputer(){
 		bool valid_vessel = false;
 		Vessel* attack_vessel = nullptr;
 		while(true) {
@@ -554,7 +537,7 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	void Engine::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y){
+	void Engine::initiateComputerAttack(Vessel* attacking_vessel, int x, int y){
 		std::vector<Vessel*> human_vessels = m_human->GetVessels();
 
 		for (int i = 0; i < 5; i++){
@@ -587,15 +570,15 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	void Engine::ComputerAttack(){
+	void Engine::computerAttack(){
 		int x_coor = rand() % 10 + 1;
 		int y_coor = rand() % 14 + 1;
-		Vessel* com_attack_vessel = SetAttackVesselForComputer();
-		InitiateComputerAttack(com_attack_vessel, x_coor, y_coor);
+		Vessel* com_attack_vessel = setAttackVesselForComputer();
+		initiateComputerAttack(com_attack_vessel, x_coor, y_coor);
 		com_attack_vessel = nullptr;
 	}
 
-	char Engine::CheckForGameWinner(){
+	char Engine::checkForGameWinner(){
 		char winner = 'N';
 		if (m_computer->GetNumOfVessels() == 0) {
 			winner = 'H';
@@ -606,12 +589,12 @@ namespace engine
 		return winner;
 	}
 
-	Player* Engine::GetHumanPlayer(){
+	std::shared_ptr<Player> Engine::getHumanPlayer(){
 		return m_human;
 	}
 
 
-	Player* Engine::GetComputerPlayer(){
+	std::shared_ptr<Player> Engine::getComputerPlayer(){
 		return m_computer;
 	}
 
@@ -619,11 +602,11 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	char Engine::SelectDashboardOption(){
+	char Engine::selectDashboardOption(){
 		std::string raw_input;
 		bool valid_selection;
 		while(true) {
-			DisplayDashboard();
+			m_dashboard->displayDashboard();
 			std::getline(std::cin, raw_input);
 			valid_selection =
 			BSValidator::validateDashboardSelection(raw_input);
@@ -635,25 +618,25 @@ namespace engine
 	}
 
 
-	void Engine::UpdateGeneralReport(std::string general_report){
+	void Engine::updateGeneralReport(std::string general_report){
 		this->m_generalReport = general_report;
 	}
 
 
-	void Engine::UpdateHumanReport(std::string human_report){
+	void Engine::updateHumanReport(std::string human_report){
 		this->m_humanReport = human_report;
 	}
 
 
-	void Engine::UpdateComputerReport(std::string computer_report){
+	void Engine::updateComputerReport(std::string computer_report){
 		this->m_computerReport = computer_report;
 	}
 
-	std::string Engine::GetReport(){
+	std::string Engine::getReport(){
 		return m_generalReport;
 	}
 
-	void Engine::DisplayInstructions(){
+	void Engine::displayInstructions(){
 		BSUtilities::ClearScreen();
 		std::string message;
 		message = "How to play:\n";
@@ -687,9 +670,9 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	char Engine::ActivateHowToMenu(){
+	char Engine::activateHowToMenu(){
 		std::string action;
-		DisplayInstructions();
+		displayInstructions();
 		while(true){
 			std::getline(std::cin, action);
 			if(BSValidator::validateHowToMenuSelection(action)){
@@ -705,21 +688,21 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	void Engine::HumanTurnSequence(char* action){
+	void Engine::humanTurnSequence(char* action){
 		char user_input;
 		bool attack_launched = false;
 
 		while(attack_launched == false) {
 			//Displays dashboard and gets input from the user.
 			//SelectDashboardOption verifies the input.
-			user_input = toupper(SelectDashboardOption());
+			user_input = toupper(selectDashboardOption());
 
 			if (user_input == 'L') {
-				HumanAttack();
+				humanAttack();
 				attack_launched = true;
 			}
 			else if(user_input == 'S'){
-				ActivateHumanStealthMode();
+				activateHumanStealthMode();
 			}
 			else{
 				//Action must be 'Q' here.
@@ -738,7 +721,7 @@ namespace engine
 	}
 
 
-	void Engine::ResetStealthVessel(){
+	void Engine::resetStealthVessel(){
 		m_human->GetCurrentStealthVessel()->UpdateStealthStatus(false);
 		m_human->UpdateCurrentStealthVessel(nullptr);
 	}
@@ -747,7 +730,7 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	Vessel* Engine::GetSelectedVessel(char vessel){
+	Vessel* Engine::getSelectedVessel(char vessel){
 		if (vessel == 'A') {
 			return m_human->GetVessels()[0];
 		}
