@@ -41,11 +41,13 @@ namespace engine
 			int setXCoorHumanVessel(Vessel* vessel);
 			int setYCoorHumanVessel(Vessel* vessel);
 			void deployHumanVessels();
+			void mainMenu(char& playerAction);
+			void startGame(char& playerAction);
 
 			/*!
 				Functions for Human Attack Sequence
 			*/
-			void humanTurnSequence(char* action);
+			void humanTurnSequence(char& action);
 			char selectDashboardOption();
 			void humanAttack();
 			void setAttackCoordinates(std::string& xCoor, std::string& yCoor);
@@ -81,6 +83,7 @@ namespace engine
 		protected:
 			//These are data members used to build the main structure of the game.
 			std::unique_ptr<landingScreen::GameSign> m_gameSign;
+			std::unique_ptr<landingScreen::GameMenu> m_gameMenu;
 			std::unique_ptr<Dashboard> m_dashboard;
 			std::shared_ptr<Player> m_human;
 			std::shared_ptr<Player> m_computer;

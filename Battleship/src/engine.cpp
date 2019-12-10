@@ -124,6 +124,7 @@ namespace engine
 
 	Engine::Engine():
 		m_gameSign(new landingScreen::GameSign),
+		m_gameMenu(new landingScreen::GameMenu),
 		m_dashboard(new Dashboard),
 		m_human(new Player),
 		m_computer(new Player),
@@ -156,6 +157,13 @@ namespace engine
 				m_gameBoard[i][j] = ' ';
 			}
 		}
+
+		std::cout << "Setting up board...";
+		BSUtilities::LoadingAnimation();
+		std::cout << std::endl;
+		m_dashboard->buildGameBoard();
+		deployHumanVessels();
+		deployComputerVessels();
 	}
 
 	/******************************************************
@@ -304,7 +312,44 @@ namespace engine
 		temp_vessel_ptr = nullptr; //To prevent any dangling pointers.
 	}
 
+	void Engine::mainMenu(char& playerAction)
+	{
+		std::string user_input;
+		BSUtilities::ClearScreen();
+		m_gameMenu->printMainMenu();
 
+		while(true){
+			std::getline(std::cin, user_input);
+			if(BSValidator::validateMainMenu(user_input)){
+				break;
+			}
+		}
+		playerAction = toupper(user_input[0]);
+	}
+
+	void Engine::startGame(char& playerAction)
+	{
+		while (true)
+		{
+			humanTurnSequence(playerAction);
+			if (toupper(playerAction) == 'Q') {
+				std::cout << "Thanks for playing!" << std::endl;
+				break;
+			}
+
+			if (checkForGameWinner() == 'H') {
+				updateGeneralReport("You win!");
+				break;
+			}
+			else{
+				computerAttack();
+				if (checkForGameWinner() == 'C') {
+					updateGeneralReport("You've been defeated.");
+					break;
+				}
+			}
+		}
+	}
 
 	/******************************************************
 	 Responsibility: Determines if a vessel is destroyed
@@ -688,7 +733,7 @@ namespace engine
 	/******************************************************
 	 Responsibility:
 	 ******************************************************/
-	void Engine::humanTurnSequence(char* action){
+	void Engine::humanTurnSequence(char& action){
 		char user_input;
 		bool attack_launched = false;
 
@@ -706,7 +751,7 @@ namespace engine
 			}
 			else{
 				//Action must be 'Q' here.
-				*action = user_input;
+				action = user_input;
 				break;
 			}
 		}

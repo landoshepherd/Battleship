@@ -7,70 +7,34 @@
 //
 
 #include <iostream>
+#include <memory>
 #include <string>
 
 #include "engine.hpp"
 
-void GameSetup(Engine* game, Player* human, Player* computer){
-    std::cout << "Setting up board...";
-    BSUtilities::LoadingAnimation();
-    std::cout << std::endl;
-    game->BuildGameBoard();
-    game->DeployComputerVessels();
-    game->DeployHumanVessels();
-}
-
-void MainMenu(Engine* game, char* action){
-    std::string user_input;
-    BSUtilities::ClearScreen();
-    game->PrintMainMenu();
-
-    while(true){
-        std::getline(std::cin, user_input);
-        if(BSValidator::validateMainMenu(user_input)){
-            break;
-        }
-    }
-    *action = toupper(user_input[0]);
-}
-
 int main() {
     //Player* human = new Player;
     //Player* computer = new Player;
-    Engine* battleship = nullptr;
-    battleship = new Engine();
-    char action;
+    std::unique_ptr<engine::Engine> gameEngine(new engine::Engine);
 
-    while(true) {
-        MainMenu(battleship, &action);
-        switch (action) {
+    while(true)
+	{
+        char action;
+		gameEngine->mainMenu(action);
+
+        switch (action)
+		{
             case 'A':{
 
-                GameSetup(battleship, human, computer);
+				//Setup engine internals.
+				gameEngine->initialize();
 
-                while (true) {
-                    battleship->HumanTurnSequence(&action);
-                    if (toupper(action) == 'Q') {
-                        std::cout << "Thanks for playing!" << std::endl;
-                        break;
-                    }
-
-                    if (battleship->CheckForGameWinner() == 'H') {
-                        battleship->UpdateGeneralReport("You win!");
-                        break;
-                    }
-                    else{
-                        battleship->ComputerAttack();
-                        if (battleship->CheckForGameWinner() == 'C') {
-                            battleship->UpdateGeneralReport("You've been defeated.");
-                            break;
-                        }
-                    }
-                }
+				//Start the game!
+				gameEngine->startGame(action);
                 break;
             }
             case 'B':{
-                battleship->ActivateHowToMenu();
+                gameEngine->activateHowToMenu();
                 break;
             }
             case 'Q':{
