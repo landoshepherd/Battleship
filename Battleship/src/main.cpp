@@ -20,15 +20,14 @@ int main() {
     while(true)
 	{
         char action;
+		//Setup engine internals.
+		gameEngine->initialize();
+
 		gameEngine->mainMenu(action);
 
         switch (action)
 		{
             case 'A':{
-
-				//Setup engine internals.
-				gameEngine->initialize();
-
 				//Start the game!
 				gameEngine->startGame(action);
                 break;

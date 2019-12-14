@@ -10,16 +10,6 @@
 
 namespace engine
 {
-	Dashboard::Dashboard()
-	{
-
-	}
-
-	Dashboard::~Dashboard()
-	{
-
-	}
-
 	void Dashboard::initialize()
 	{
 

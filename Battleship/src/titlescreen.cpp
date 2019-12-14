@@ -1,51 +1,29 @@
 //
-//  landingscreen.cpp
+//  titlescreen.cpp
 //  Battleship
 //
 //  Created by Lando Shepherd on 12/7/19.
 //  Copyright © 2019 Lando Shepherd. All rights reserved.
 //
 
-#include "landingscreen.hpp"
+#include "titlescreen.hpp"
 
 #include "utilities/BS_Utilities.hpp"
 
-char landingScreen::GameMenu::MainMenu()
-{
-	std::string user_input;
-	printMainMenu();
 
-	while(true){
-		std::getline(std::cin, user_input);
-		if(BSValidator::validateMainMenu(user_input)){
-			break;
-		}
-	}
-	return toupper(user_input[0]);
-}
 
-void landingScreen::GameMenu::printMainMenu()
-{
-
-	std::cout << "[A] Play Battleship\n";
-	std::cout << "[B] How to play\n";
-	std::cout << "[Q] Quit\n";
-}
-
-landingScreen::GameSign::GameSign():
-					mainMenu(new GameMenu),
-					m_signRow(11),
-					m_signCol(68),
-					m_sign(new char*[m_signRow])
-
+TitleScreen::TitleScreen():
+			m_signRow(11),
+			m_signCol(68),
+			m_sign(new char*[m_signRow])
 {}
 
-landingScreen::GameSign::~GameSign()
+TitleScreen::~TitleScreen()
 {
 	//Used to delete dynamic allocated memory
 }
 
-void landingScreen::GameSign::initialize()
+void TitleScreen::initialize()
 {
 	for(int i = 0; i < m_signRow; i++){
         m_sign[i] = new char [m_signCol];
@@ -58,7 +36,7 @@ void landingScreen::GameSign::initialize()
     }
 }
 
-void landingScreen::GameSign::displayBanner()
+void TitleScreen::displayBanner()
 {
 	for (int i = 0; i < m_signRow; i++) {
 		for(int j = 0; j < m_signCol; j++){
@@ -72,14 +50,35 @@ void landingScreen::GameSign::displayBanner()
 	std::cout << std::endl;
 }
 
-void landingScreen::GameSign::displayLandingScreen()
+char TitleScreen::mainMenu()
+{
+	std::string user_input;
+	printMainMenu();
+
+	while(true){
+		std::getline(std::cin, user_input);
+		if(BSValidator::validateMainMenu(user_input)){
+			break;
+		}
+	}
+	return toupper(user_input[0]);
+}
+
+void TitleScreen::printMainMenu()
+{
+
+	std::cout << "[A] Play Battleship\n";
+	std::cout << "[B] How to play\n";
+	std::cout << "[Q] Quit\n";
+}
+void TitleScreen::displayLandingScreen()
 {
 	buildBanner();
 	displayBanner();
-	mainMenu->printMainMenu();
+	printMainMenu();
 }
 
-void landingScreen::GameSign::buildBanner(){
+void TitleScreen::buildBanner(){
     for(int i = 0; i < m_signRow; i++){
         for(int j = 0; j < m_signCol; j++){
             if(i == 0)
@@ -131,7 +130,7 @@ void landingScreen::GameSign::buildBanner(){
 }
 
 
-void landingScreen::GameSign::row0(int i, int j){
+void TitleScreen::row0(int i, int j){
     if(j >= 0 && j <= 4){
         m_sign[i][j] = '*';
     }
@@ -177,7 +176,7 @@ void landingScreen::GameSign::row0(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row1(int i, int j){
+void TitleScreen::row1(int i, int j){
     if(j >= 0 && j <= 5){
         m_sign[i][j] = '*';
     }
@@ -223,7 +222,7 @@ void landingScreen::GameSign::row1(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row2(int i, int j){
+void TitleScreen::row2(int i, int j){
     if(j >= 0 && j <= 1){
         m_sign[i][j] = '*';
     }
@@ -281,7 +280,7 @@ void landingScreen::GameSign::row2(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row3(int i, int j){
+void TitleScreen::row3(int i, int j){
     if(j >= 0 && j <= 1){
         m_sign[i][j] = '*';
     }
@@ -339,7 +338,7 @@ void landingScreen::GameSign::row3(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row4(int i, int j){
+void TitleScreen::row4(int i, int j){
     if(j >= 0 && j <= 5){
         m_sign[i][j] = '*';
     }
@@ -385,7 +384,7 @@ void landingScreen::GameSign::row4(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row5(int i, int j){
+void TitleScreen::row5(int i, int j){
     if(j >= 0 && j <= 4){
         m_sign[i][j] = '*';
     }
@@ -427,7 +426,7 @@ void landingScreen::GameSign::row5(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row6(int i, int j){
+void TitleScreen::row6(int i, int j){
     if(j >= 0 && j <= 5){
         m_sign[i][j] = '*';
     }
@@ -473,7 +472,7 @@ void landingScreen::GameSign::row6(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row7(int i, int j){
+void TitleScreen::row7(int i, int j){
     if(j >= 0 && j <= 1){
         m_sign[i][j] = '*';
     }
@@ -527,7 +526,7 @@ void landingScreen::GameSign::row7(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row8(int i, int j){
+void TitleScreen::row8(int i, int j){
     if(j >= 0 && j <= 1){
         m_sign[i][j] = '*';
     }
@@ -581,7 +580,7 @@ void landingScreen::GameSign::row8(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row9(int i, int j){
+void TitleScreen::row9(int i, int j){
     if(j >= 0 && j <= 5){
         m_sign[i][j] = '*';
     }
@@ -631,7 +630,7 @@ void landingScreen::GameSign::row9(int i, int j){
     }
 }
 
-void landingScreen::GameSign::row10(int i, int j){
+void TitleScreen::row10(int i, int j){
     if(j >= 0 && j <= 4){
         m_sign[i][j] = '*';
     }

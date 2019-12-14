@@ -82,8 +82,7 @@ namespace engine
 
 		protected:
 			//These are data members used to build the main structure of the game.
-			std::unique_ptr<landingScreen::GameSign> m_gameSign;
-			std::unique_ptr<landingScreen::GameMenu> m_gameMenu;
+			std::unique_ptr<TitleScreen> titleScreen;
 			std::unique_ptr<Dashboard> m_dashboard;
 			std::shared_ptr<Player> m_human;
 			std::shared_ptr<Player> m_computer;
@@ -98,8 +97,8 @@ namespace engine
 	class Dashboard : public Engine
 	{
 		public:
-			Dashboard();
-			~Dashboard();
+			Dashboard() = default;
+			~Dashboard() = default;
 			void initialize();
 			void displayHumanVessels();
 			void buildGameBoard();
