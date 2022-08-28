@@ -23,6 +23,7 @@ To build an executable, run the commands below:
 
     cd build
     cmake ../src
+    make
     
 Launch game by running the command below:
 
