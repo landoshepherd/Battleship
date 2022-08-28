@@ -1,4 +1,4 @@
 *.xcuserstate
-*.xcodepro
+*.xcodeproj
 .vscode
 build/
