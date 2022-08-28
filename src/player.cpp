@@ -6,7 +6,7 @@
 //  Copyright © 2018 Lando Shepherd. All rights reserved.
 //
 
-#include "Player.hpp"
+#include "player.hpp"
 
 Player::Player(){
     num_of_vessels = 5;

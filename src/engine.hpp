@@ -6,8 +6,8 @@
 //  Copyright © 2018 Lando Shepherd. All rights reserved.
 //
 
-#ifndef Game_Components_hpp
-#define Game_Components_hpp
+#ifndef Engine_hpp
+#define Engine_hpp
 
 #include <iostream>
 #include <unistd.h>
@@ -16,8 +16,8 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "BS_Utilities.hpp"
-#include "Player.hpp"
+#include "bs_utilities.hpp"
+#include "player.hpp"
 
 class Engine{
 public:

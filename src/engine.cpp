@@ -665,6 +665,10 @@ void Engine::PrintMainMenu(){
     std::cout << "[A] Play Battleship\n";
     std::cout << "[B] How to play\n";
     std::cout << "[Q] Quit\n";
+#if DEBUG_MODE
+    std::cout << "\n\n";
+    std::cout << "DEBUG MODE" << std::endl;
+#endif
 }
 
 
@@ -918,6 +922,17 @@ void Engine::DeployHumanVessels(){
     Vessel* temp_vessel_ptr = nullptr;
     
     std::cout << "Now that the stage is set, let's deploy your vessels!" << std::endl;
+#if DEBUG_MODE
+    std::cout << "In debug mode" << std::endl;
+    int debugPoint = 1;
+    for(int i = 0; i < 5; i++){
+        temp_vessel_ptr = human->GetVessels()[i];
+        temp_vessel_ptr->UpdateXCoor(debugPoint);
+        temp_vessel_ptr->UpdateYCoor(debugPoint);
+        game_board[debugPoint][debugPoint] = temp_vessel_ptr->GetSymbol();
+        debugPoint++;
+    }
+#else
     for (int i = 0; i < 5; i++) {
         temp_vessel_ptr = human->GetVessels()[i];
         while(true){
@@ -933,7 +948,7 @@ void Engine::DeployHumanVessels(){
             std::cout << "You've already placed a vessel here. Try another space." << std::endl;
         }
     }
-    temp_vessel_ptr = nullptr; //To prevent any dangling pointers.
+#endif
 }
 
 
@@ -1027,15 +1042,17 @@ char Engine::SetHumanAttackVessel(){
         std::getline(std::cin,raw_input);
         valid_vessel_selection = BSValidator::validateVesselSelection(raw_input);
         if (valid_vessel_selection == true) {
+            std::cout << "Valid selection" << std::endl;
             vessel_selection = toupper(raw_input[0]);
             temp_vessel_ptr = GetSelectedVessel(vessel_selection);
             if (VesselDestroyed(temp_vessel_ptr) == true) {
                 valid_vessel_selection = false;
             }
-        }
-        if(valid_vessel_selection == true){
             break;
         }
+        /*if(valid_vessel_selection == true){
+            break;
+        }*/
     };
     temp_vessel_ptr = nullptr;
     return vessel_selection;

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Lando Shepherd. All rights reserved.
 //
 
-#include "BS_Utilities.hpp"
+#include "bs_utilities.hpp"
 const std::string ERROR_MESSAGE = "Error: Invalid entry. Try again.";
 
 bool BSValidator::validateMainMenu(std::string input){
