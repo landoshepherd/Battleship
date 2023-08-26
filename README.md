@@ -28,6 +28,10 @@ To build an executable, run the commands below:
 Launch game by running the command below:
 
     ./battleship
+
+Coding Style Guild
+
+https://google.github.io/styleguide/cppguide.html
     
 
 
