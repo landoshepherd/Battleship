@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 
-#include "engine.hpp"
+#include "src/engine.hpp"
 
 void GameSetup(Engine* game, Player* human, Player* computer){
     std::cout << "Setting up board...";

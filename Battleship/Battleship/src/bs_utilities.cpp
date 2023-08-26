@@ -132,4 +132,5 @@ void BSUtilities::LoadingAnimation(){
 
 void BSUtilities::ClearScreen(){
     std::cout << "\033[2J\033[1;1H";
+    //std::system("clear");
 }
