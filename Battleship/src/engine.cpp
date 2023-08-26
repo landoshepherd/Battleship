@@ -338,12 +338,12 @@ void Engine::DeployHumanVessels(){
  
  Return: True if destroyed false if not destroyed.
  ******************************************************/
-bool Engine::VesselDestroyed(Vessel* vessel){
+bool Engine::IsVesselDestroyed(Vessel* vessel){
     if(vessel->GetDefensePoints() <= 0){
-        return false;
+        return true;
     }
     else{
-        return true;
+        return false;
     }
 }
 
@@ -409,55 +409,52 @@ void Engine::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinat
  ******************************************************/
 char Engine::SetHumanAttackVessel(){
     std::string raw_input;
-    char vessel_selection = '\0';
-    bool valid_vessel_selection;
-    Vessel* temp_vessel_ptr = nullptr;
+    char vesselSelection = '\0';
+    bool validVesselSelection;
+    Vessel* selectedVesselPtr = nullptr;
     
     while(true) {
         std::cout << "Select a vessel in your fleet to launch an attack: ";
         std::getline(std::cin,raw_input);
-        valid_vessel_selection = BSValidator::validateVesselSelection(raw_input);
-        if (valid_vessel_selection == true) {
+        validVesselSelection = BSValidator::validateVesselSelection(raw_input);
+        if (validVesselSelection == true) {
             std::cout << "Valid selection" << std::endl;
-            vessel_selection = toupper(raw_input[0]);
-            temp_vessel_ptr = GetSelectedVessel(vessel_selection);
-            if (VesselDestroyed(temp_vessel_ptr) == true) {
-                valid_vessel_selection = false;
+            vesselSelection = toupper(raw_input[0]);
+            selectedVesselPtr = GetSelectedVessel(vesselSelection);
+            if (IsVesselDestroyed(selectedVesselPtr) == true) {
+                std::cout << "This vessel is destroyed. Pick another one." << std::endl;
             }
-            break;
+            else{
+                break;
+            }
         }
-        /*if(valid_vessel_selection == true){
-            break;
-        }*/
     };
-    temp_vessel_ptr = nullptr;
-    return vessel_selection;
+    return vesselSelection;
 }
 
 /******************************************************
  Responsibility:
  ******************************************************/
 Vessel* Engine::SelectStealthVessel(){
-    std::string raw_input;
-    char vessel_selection = '\0';
-    bool valid_input = true;
-    Vessel* temp_vessel_ptr = nullptr;
+    std::string rawInput;
+    char vesselSelection = '\0';
+    bool validInput = true;
+    Vessel* tempVesselPtr = nullptr;
     
     while(true) {
         std::cout << "Select a vessel to go into stealth mode: ";
-        std::cin >> raw_input;
-        valid_input = BSValidator::validateVesselSelection(raw_input);
+        std::cin >> rawInput;
+        validInput = BSValidator::validateVesselSelection(rawInput);
         
         //Checks if input is valid
-        if (valid_input) {
-            vessel_selection = toupper(raw_input[0]);
-            temp_vessel_ptr = GetSelectedVessel(vessel_selection);
-            if (VesselDestroyed(temp_vessel_ptr)) {
-                valid_input = false;
+        if (validInput) {
+            vesselSelection = toupper(rawInput[0]);
+            tempVesselPtr = GetSelectedVessel(vesselSelection);
+            if (IsVesselDestroyed(tempVesselPtr)) {
+                std::cout << "This vessel is destroyed. Pick another one." << std::endl;
             }
             else{
-                temp_vessel_ptr = nullptr;
-                return GetSelectedVessel(vessel_selection);
+                return GetSelectedVessel(vesselSelection);
             }
         }
     }
@@ -468,19 +465,19 @@ Vessel* Engine::SelectStealthVessel(){
  ******************************************************/
 void Engine::SetHumanVesselToStealthMode(Vessel* vessel){
     vessel->UpdateStealthStatus(true);
-    human_report = vessel->GetVesselName() + " set to stealth mode Captain.";
+    human_report = vessel->GetVesselName() + " set to stealth mode, Captain.";
 }
 
 void Engine::ActivateHumanStealthMode(){
     Vessel* selected_vessel = nullptr;
     
-    if(human->GetStealthMode()){
-        general_report = "You currently have a vessel in stealth mode. Must wait 3 turns to put another vessel in stealth mode.";
+    if(human->GetStealthMode() || human->GetStealthCount() >= 1){
+        general_report = "You currently have a vessel in stealth mode\n"
+                        "or have already activated stealth mode once this game.";
     }
     else{
         selected_vessel = SelectStealthVessel();
         SetHumanVesselToStealthMode(selected_vessel);
-        human->UpdateStealthCount();
         std::cin.clear();
         std::cin.ignore();
     }
@@ -735,10 +732,11 @@ void Engine::HumanTurnSequence(char* action){
             break;
         }
     }
-    if(human->GetStealthCount() >= 3){
+    
+    //User may only use stealth once per game. Once used, reset stealth mode
+    if(human->GetStealthCount() >= 1){
         human->UpdateStealthMode(false);
-        human->GetCurrentStealthVessel()->UpdateStealthStatus(false);
-        human->UpdateStealthCount();
+        ResetStealthVessel();
     }
     else{
         human->UpdateStealthCount();

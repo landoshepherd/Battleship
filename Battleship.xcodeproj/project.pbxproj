@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5ECD1BBD2A9A79A800A421F7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5ECD1BBC2A9A79A800A421F7 /* main.cpp */; };
+		5ECD1BDA2A9A89FF00A421F7 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5ECD1BD22A9A89FF00A421F7 /* player.cpp */; };
+		5ECD1BDB2A9A89FF00A421F7 /* bs_utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5ECD1BD42A9A89FF00A421F7 /* bs_utilities.cpp */; };
+		5ECD1BDC2A9A89FF00A421F7 /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5ECD1BD52A9A89FF00A421F7 /* engine.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,15 @@
 /* Begin PBXFileReference section */
 		5ECD1BB92A9A79A800A421F7 /* Battleship */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Battleship; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECD1BBC2A9A79A800A421F7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5ECD1BD12A9A89FF00A421F7 /* battleship */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = battleship; sourceTree = "<group>"; };
+		5ECD1BD22A9A89FF00A421F7 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		5ECD1BD32A9A89FF00A421F7 /* player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		5ECD1BD42A9A89FF00A421F7 /* bs_utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bs_utilities.cpp; sourceTree = "<group>"; };
+		5ECD1BD52A9A89FF00A421F7 /* engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = engine.cpp; sourceTree = "<group>"; };
+		5ECD1BD62A9A89FF00A421F7 /* bs_utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bs_utilities.hpp; sourceTree = "<group>"; };
+		5ECD1BD72A9A89FF00A421F7 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		5ECD1BD82A9A89FF00A421F7 /* vessel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vessel.hpp; sourceTree = "<group>"; };
+		5ECD1BD92A9A89FF00A421F7 /* engine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = engine.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +69,26 @@
 		5ECD1BBB2A9A79A800A421F7 /* Battleship */ = {
 			isa = PBXGroup;
 			children = (
+				5ECD1BD02A9A899B00A421F7 /* src */,
 				5ECD1BBC2A9A79A800A421F7 /* main.cpp */,
 			);
 			path = Battleship;
+			sourceTree = "<group>";
+		};
+		5ECD1BD02A9A899B00A421F7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				5ECD1BD12A9A89FF00A421F7 /* battleship */,
+				5ECD1BD42A9A89FF00A421F7 /* bs_utilities.cpp */,
+				5ECD1BD62A9A89FF00A421F7 /* bs_utilities.hpp */,
+				5ECD1BD72A9A89FF00A421F7 /* CMakeLists.txt */,
+				5ECD1BD52A9A89FF00A421F7 /* engine.cpp */,
+				5ECD1BD92A9A89FF00A421F7 /* engine.hpp */,
+				5ECD1BD22A9A89FF00A421F7 /* player.cpp */,
+				5ECD1BD32A9A89FF00A421F7 /* player.hpp */,
+				5ECD1BD82A9A89FF00A421F7 /* vessel.hpp */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECD1BDB2A9A89FF00A421F7 /* bs_utilities.cpp in Sources */,
+				5ECD1BDC2A9A89FF00A421F7 /* engine.cpp in Sources */,
+				5ECD1BDA2A9A89FF00A421F7 /* player.cpp in Sources */,
 				5ECD1BBD2A9A79A800A421F7 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

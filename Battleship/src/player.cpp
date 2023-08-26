@@ -14,19 +14,19 @@ Player::Player(){
     current_stealth_vessel = nullptr;
     player_in_stealth_mode = false;
     
-    carrier = new Carrier;
+    carrier = new Carrier();
     vessels.push_back(carrier);
     
     battleship = new Battleship;
     vessels.push_back(battleship);
     
-    cruiser = new Cruiser;
+    cruiser = new Cruiser();
     vessels.push_back(cruiser);
     
-    submarine = new Submarine;
+    submarine = new Submarine();
     vessels.push_back(submarine);
     
-    destroyer = new Destroyer;
+    destroyer = new Destroyer();
     vessels.push_back(destroyer);
 };
 
@@ -47,12 +47,7 @@ int Player::GetNumOfVessels(){
 }
 
 void Player::UpdateStealthCount(){
-    if(stealth_count > 3){
-        stealth_count = 0;
-    }
-    else{
-        stealth_count++;
-    }
+    stealth_count++;
 }
 
 int Player::GetStealthCount(){
