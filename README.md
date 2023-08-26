@@ -29,7 +29,7 @@ Launch game by running the command below:
 
     ./battleship
 
-Coding Style Guild
+Coding Style Guided
 
 https://google.github.io/styleguide/cppguide.html
     
