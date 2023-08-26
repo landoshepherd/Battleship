@@ -1,5 +1,4 @@
 *.xcuserstate
-*.xcodeproj
 .vscode
 build
 *.o

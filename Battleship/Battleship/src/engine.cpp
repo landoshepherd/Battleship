@@ -29,6 +29,7 @@ Engine::Engine(Player* player1, Player* player2){
 
 //Displays "Battleship" sign.
 void Engine::DisplayMarquee_(){
+    system("clear");
     BigSign bigSign;
     std::cout << bigSign.signString << std::endl;
 }
@@ -156,9 +157,9 @@ void Engine::DisplayVessels(){
  Return: Nothing
  ******************************************************/
 void Engine::ClearReports(){
-    human_report = " ";
-    computer_report = " ";
-    general_report = " ";
+    human_report.clear();
+    computer_report.clear();
+    general_report.clear();
 }
 
 
@@ -181,6 +182,7 @@ void Engine::DisplayDashboard(){
     std::cout << "[L] Launch Attack\t";
     std::cout << "[S] Activate Stealth\t";
     std::cout << "[Q] Quit" << std::endl;
+    
     ClearReports();
 }
 
