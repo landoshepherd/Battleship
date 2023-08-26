@@ -7,6 +7,7 @@
 //
 
 #include "bs_utilities.hpp"
+
 const std::string ERROR_MESSAGE = "Error: Invalid entry. Try again.";
 
 bool BSValidator::validateMainMenu(std::string input){
