@@ -12,7 +12,7 @@ IF(DEBUG_MODE)
 ENDIF(DEBUG_MODE)
 
 add_executable(battleship
-		main.cpp
+		../main.cpp
 		player.cpp
 		engine.cpp
 		bs_utilities.cpp

@@ -22,7 +22,7 @@ void GameSetup(Engine* game, Player* human, Player* computer){
 
 void MainMenu(Engine* game, char* action){
     std::string user_input;
-    BSUtilities::ClearScreen();
+    //BSUtilities::ClearScreen();
     game->PrintMainMenu();
 
     while(true){

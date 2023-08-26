@@ -20,10 +20,24 @@
 #include "player.hpp"
 
 class Engine{
+private:
+    struct BigSign{
+        std::string signString = "*****    **   ****** ****** **     ****** ****** **  ** ****** *****\n"
+        "******  ****  ****** ****** **     ****** ****** **  ** ****** *****\n"
+        "**  ** **  **   **     **   **     **     **     **  **   **   **  *\n"
+        "**  ** **  **   **     **   **     **     **     **  **   **   **  *\n"
+        "****** **  **   **     **   **     ****** ****** ******   **   *****\n"
+        "*****  ******   **     **   **     ****** ****** ******   **   *****\n"
+        "****** ******   **     **   **     **         ** **  **   **   **\n"
+        "**  ** **  **   **     **   **     **         ** **  **   **   **\n"
+        "**  ** **  **   **     **   **     **         ** **  **   **   **\n"
+        "****** **  **   **     **   ****** ****** ****** **  ** ****** **\n"
+        "*****  **  **   **     **   ****** ****** ****** **  ** ****** **";
+    };
+    
 public:
     Engine(Player* player1, Player* player2);
     
-    void SetupMarquee();
     void DisplayMarquee_();
     void PrintMainMenu();
     char MainMenu();
@@ -31,7 +45,6 @@ public:
     void DisplayVessels();
     void BuildGameBoard();
     void PrintGameBoard();
-    
     
     bool SpaceAvailable(std::vector<Vessel*> vessels, int x, int y);
     void DeployComputerVessels();
@@ -84,23 +97,8 @@ public:
     Vessel* GetSelectedVessel(char vessel);
     ~Engine();
     
-    //Battleship landing page sign.
-    void row0(int row, int col);
-    void row1(int row, int col);
-    void row2(int row, int col);
-    void row3(int row, int col);
-    void row4(int row, int col);
-    void row5(int row, int col);
-    void row6(int row, int col);
-    void row7(int row, int col);
-    void row8(int row, int col);
-    void row9(int row, int col);
-    void row10(int row, int col);
-    
 private:
     //These are data members used to build the main structure of the game.
-    char** marquee = nullptr;
-    const int ROW = 11, COL = 68;
     char** game_board = nullptr;
     const int GBROW = 8, GBCOL = 26;
     Player* human = nullptr;
@@ -108,10 +106,6 @@ private:
     std::string human_report;
     std::string computer_report;
     std::string general_report;
-    
-    
-    
-
 };
 
 #endif /* Battleship_hpp */
