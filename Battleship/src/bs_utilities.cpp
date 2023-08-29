@@ -44,7 +44,9 @@ bool BSValidator::validateVesselSelection(std::string selection){
     std::vector<char> vesselTypes = {'A', 'B', 'C', 'D', 'E'};
     if (selection.size() == 1) {
         for(auto i = 0; i < vesselTypes.size(); i++){
-            if(toupper(selection[0]) == vesselTypes[i]){return true;}
+            if(toupper(selection[0]) == vesselTypes[i]){
+                return true;                
+            }
         }
         std::cout << ERROR_MESSAGE << std::endl;
         return false;

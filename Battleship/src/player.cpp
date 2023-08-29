@@ -14,19 +14,19 @@ Player::Player(){
     current_stealth_vessel = nullptr;
     player_in_stealth_mode = false;
     
-    carrier = new Carrier();
+    carrier.reset(new Carrier);
     vessels.push_back(carrier);
     
-    battleship = new Battleship;
+    battleship.reset(new Battleship);
     vessels.push_back(battleship);
     
-    cruiser = new Cruiser();
+    cruiser.reset(new Cruiser());
     vessels.push_back(cruiser);
     
-    submarine = new Submarine();
+    submarine.reset(new Submarine());
     vessels.push_back(submarine);
     
-    destroyer = new Destroyer();
+    destroyer.reset(new Destroyer());
     vessels.push_back(destroyer);
 };
 
@@ -34,7 +34,7 @@ std::string Player::GetPlayerName(){
     return name;
 }
 
-std::vector<Vessel*> Player::GetVessels(){
+std::vector<std::shared_ptr<Vessel> > Player::GetVessels(){
     return vessels;
 }
 
@@ -54,11 +54,11 @@ int Player::GetStealthCount(){
     return stealth_count;
 }
 
-void Player::UpdateCurrentStealthVessel(Vessel* vessel){
+void Player::UpdateCurrentStealthVessel(std::shared_ptr<Vessel> vessel){
     current_stealth_vessel = vessel;
 }
 
-Vessel* Player::GetCurrentStealthVessel(){
+std::shared_ptr<Vessel> Player::GetCurrentStealthVessel(){
     return current_stealth_vessel;
 }
 
@@ -71,10 +71,11 @@ bool Player::GetStealthMode(){
 }
 
 Player::~Player(){
-    for (int i = 0; i < vessels.size(); i++) {
-        if(vessels[i] != NULL)
-        {
-            delete vessels[i];
-        }
-    }
+    //Using a shared pointer, I no longer need to do this.
+//    for (int i = 0; i < vessels.size(); i++) {
+//        if(vessels[i] != NULL)
+//        {
+//            delete vessels[i];
+//        }
+//    }
 };

@@ -8,9 +8,9 @@
 
 #include "engine.hpp"
 
-Engine::Engine(Player* player1, Player* player2){
+Engine::Engine(std::shared_ptr<Player> player1, std::shared_ptr<Player> player2){
     srand(unsigned(time(0)));
-    human = player1;
+    human = (player1);
     computer = player2;
     
     game_board = new char*[GBROW];
@@ -137,7 +137,7 @@ void Engine::PrintGameBoard(){
  Return: Nothing
  ******************************************************/
 void Engine::DisplayVessels(){
-    std::vector<Vessel*> vessels = human->GetVessels();
+    std::vector<std::shared_ptr<Vessel>> vessels = human->GetVessels();
     char letter = 65;
     for (int i = 0; i < vessels.size(); i++){
         std::cout << "[" << letter << "] " << vessels[i]->GetVesselName() << "\t"
@@ -194,7 +194,7 @@ void Engine::DisplayDashboard(){
  
  Return: True if space is available and false if not.
  ******************************************************/
-bool Engine::SpaceAvailable(std::vector<Vessel*> vessels, int x, int y){
+bool Engine::SpaceAvailable(std::vector<std::shared_ptr<Vessel>> vessels, int x, int y){
     int usedX, usedY;
     if(vessels.size() == 0){
         return true;
@@ -243,7 +243,7 @@ void Engine::DeployComputerVessels(){
  
  Return: Returns x coordinate as integer.
  ******************************************************/
-int Engine::SetXCoorHumanVessel(Vessel* vessel){
+int Engine::SetXCoorHumanVessel(std::shared_ptr<Vessel> vessel){
     std::string unvalidatedX;
     int validatedX;
     while(true) {
@@ -269,7 +269,7 @@ int Engine::SetXCoorHumanVessel(Vessel* vessel){
  
  Return: Returns y coordinate as integer.
  ******************************************************/
-int Engine::SetYCoorHumanVessel(Vessel* vessel){
+int Engine::SetYCoorHumanVessel(std::shared_ptr<Vessel> vessel){
     std::string unvalidatedY;
     int validatedY;
     while(true) {
@@ -295,7 +295,7 @@ int Engine::SetYCoorHumanVessel(Vessel* vessel){
  ******************************************************/
 void Engine::DeployHumanVessels(){
     int x = 0, y = 0;
-    Vessel* temp_vessel_ptr = nullptr;
+    std::shared_ptr<Vessel> temp_vessel_ptr = nullptr;
     
     std::cout << "Now that the stage is set, let's deploy your vessels!" << std::endl;
 #if DEBUG_MODE
@@ -338,7 +338,7 @@ void Engine::DeployHumanVessels(){
  
  Return: True if destroyed false if not destroyed.
  ******************************************************/
-bool Engine::IsVesselDestroyed(Vessel* vessel){
+bool Engine::IsVesselDestroyed(std::shared_ptr<Vessel> vessel){
     if(vessel->GetDefensePoints() <= 0){
         return true;
     }
@@ -369,7 +369,7 @@ bool Engine::AttackVesselFound(int x, int y){
 /******************************************************
  Responsibility:
  ******************************************************/
-void Engine::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinate, Vessel* attack_vessel){
+void Engine::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinate, std::shared_ptr<Vessel> attack_vessel){
     Vessel* target_vessel = nullptr;
     int y = std::stoi(yCoordinate);
     int x = std::stoi(xCoordinate);
@@ -411,14 +411,13 @@ char Engine::SetHumanAttackVessel(){
     std::string raw_input;
     char vesselSelection = '\0';
     bool validVesselSelection;
-    Vessel* selectedVesselPtr = nullptr;
+    std::shared_ptr<Vessel> selectedVesselPtr;
     
     while(true) {
         std::cout << "Select a vessel in your fleet to launch an attack: ";
         std::getline(std::cin,raw_input);
         validVesselSelection = BSValidator::validateVesselSelection(raw_input);
         if (validVesselSelection == true) {
-            std::cout << "Valid selection" << std::endl;
             vesselSelection = toupper(raw_input[0]);
             selectedVesselPtr = GetSelectedVessel(vesselSelection);
             if (IsVesselDestroyed(selectedVesselPtr) == true) {
@@ -435,11 +434,11 @@ char Engine::SetHumanAttackVessel(){
 /******************************************************
  Responsibility:
  ******************************************************/
-Vessel* Engine::SelectStealthVessel(){
+std::shared_ptr<Vessel> Engine::SelectStealthVessel(){
     std::string rawInput;
     char vesselSelection = '\0';
     bool validInput = true;
-    Vessel* tempVesselPtr = nullptr;
+    std::shared_ptr<Vessel> tempVesselPtr;
     
     while(true) {
         std::cout << "Select a vessel to go into stealth mode: ";
@@ -463,13 +462,13 @@ Vessel* Engine::SelectStealthVessel(){
 /******************************************************
  Responsibility:
  ******************************************************/
-void Engine::SetHumanVesselToStealthMode(Vessel* vessel){
+void Engine::SetHumanVesselToStealthMode(std::shared_ptr<Vessel> vessel){
     vessel->UpdateStealthStatus(true);
     human_report = vessel->GetVesselName() + " set to stealth mode, Captain.";
 }
 
 void Engine::ActivateHumanStealthMode(){
-    Vessel* selected_vessel = nullptr;
+    std::shared_ptr<Vessel> selected_vessel = nullptr;
     
     if(human->GetStealthMode() || human->GetStealthCount() >= 1){
         general_report = "You currently have a vessel in stealth mode\n"
@@ -522,7 +521,7 @@ void Engine::SetAttackCoordinates(std::string& x_coor, std::string& y_coor){
  ******************************************************/
 void Engine::HumanAttack(){
     //SetHumanAttackVessel returns a character input by the user to select which vessel will be used for the attack.
-    Vessel* attack_vessel = GetSelectedVessel(SetHumanAttackVessel());
+    std::shared_ptr<Vessel> attack_vessel = GetSelectedVessel(SetHumanAttackVessel());
     
     std::string x_coordinate;
     std::string y_coordinate;
@@ -535,9 +534,9 @@ void Engine::HumanAttack(){
 /******************************************************
  Responsibility:
  ******************************************************/
-Vessel* Engine::SetAttackVesselForComputer(){
+std::shared_ptr<Vessel> Engine::SetAttackVesselForComputer(){
     bool valid_vessel = false;
-    Vessel* attack_vessel = nullptr;
+    std::shared_ptr<Vessel> attack_vessel = nullptr;
     while(true) {
         int random_choice = rand() % 5;
         attack_vessel = computer->GetVessels()[random_choice];
@@ -559,8 +558,8 @@ Vessel* Engine::SetAttackVesselForComputer(){
 /******************************************************
  Responsibility:
  ******************************************************/
-void Engine::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y){
-    std::vector<Vessel*> human_vessels = human->GetVessels();
+void Engine::InitiateComputerAttack(std::shared_ptr<Vessel> attacking_vessel, int x, int y){
+    std::vector<std::shared_ptr<Vessel>> human_vessels = human->GetVessels();
     
     for (int i = 0; i < 5; i++){
         if(human_vessels[i]->GetXCoor() == x && human_vessels[i]->GetXCoor() == y){
@@ -595,7 +594,7 @@ void Engine::InitiateComputerAttack(Vessel* attacking_vessel, int x, int y){
 void Engine::ComputerAttack(){
     int x_coor = rand() % 10 + 1;
     int y_coor = rand() % 14 + 1;
-    Vessel* com_attack_vessel = SetAttackVesselForComputer();
+    std::shared_ptr<Vessel> com_attack_vessel = SetAttackVesselForComputer();
     InitiateComputerAttack(com_attack_vessel, x_coor, y_coor);
     com_attack_vessel = nullptr;
 }
@@ -611,12 +610,12 @@ char Engine::CheckForGameWinner(){
     return winner;
 }
 
-Player* Engine::GetHumanPlayer(){
+std::shared_ptr<Player> Engine::GetHumanPlayer(){
     return human;
 }
 
 
-Player* Engine::GetComputerPlayer(){
+std::shared_ptr<Player> Engine::GetComputerPlayer(){
     return computer;
 }
 
@@ -753,7 +752,7 @@ void Engine::ResetStealthVessel(){
 /******************************************************
  Responsibility:
  ******************************************************/
-Vessel* Engine::GetSelectedVessel(char vessel){
+std::shared_ptr<Vessel> Engine::GetSelectedVessel(char vessel){
     if (vessel == 'A') {
         return human->GetVessels()[0];
     }
