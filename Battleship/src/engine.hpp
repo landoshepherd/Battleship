@@ -61,7 +61,7 @@ public:
     /*!
 		Functions for Human Attack Sequence
 	*/
-    void HumanTurnSequence(char* action);
+    void HumanTurnSequence(char& action);
     char SelectDashboardOption();
     void HumanAttack();
     void SetAttackCoordinates(std::string& xCoor, std::string& yCoor);

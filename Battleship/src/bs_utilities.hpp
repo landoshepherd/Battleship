@@ -17,13 +17,13 @@
 class BSValidator{
 private:
 public:
-    static bool validateMainMenu(std::string input);
-    static bool validateHowToMenuSelection(std::string input);
-    static bool validateVesselSelection(std::string selection);
-    static bool isValidInteger(std::string input);
-    static bool validateXCoordinate(std::string xCoor);
-    static bool validateYCoordinate(std::string yCoor);
-    static bool validateDashboardSelection(std::string selection);
+    static bool validateMainMenu(std::string& input);
+    static bool validateHowToMenuSelection(std::string& input);
+    static bool validateVesselSelection(std::string& selection);
+    static bool isValidInteger(std::string& input);
+    static bool validateXCoordinate(std::string& xCoor);
+    static bool validateYCoordinate(std::string& yCoor);
+    static bool validateDashboardSelection(std::string& selection);
 };
 
 class BSUtilities{

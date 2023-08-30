@@ -10,7 +10,7 @@
 
 const std::string ERROR_MESSAGE = "Error: Invalid entry. Try again.";
 
-bool BSValidator::validateMainMenu(std::string input){
+bool BSValidator::validateMainMenu(std::string& input){
     auto numOfChar = input.size();
     std::vector<char> mainMenuChoices = {'A', 'B', 'Q'};
     
@@ -31,7 +31,7 @@ bool BSValidator::validateMainMenu(std::string input){
 }
 
 
-bool BSValidator::validateHowToMenuSelection(std::string input){
+bool BSValidator::validateHowToMenuSelection(std::string& input){
     auto numOfChar = input.size();
     if(numOfChar == 1 && toupper(input[0]) == 'R'){
         return true;
@@ -40,7 +40,7 @@ bool BSValidator::validateHowToMenuSelection(std::string input){
     return false;
 }
 
-bool BSValidator::validateVesselSelection(std::string selection){
+bool BSValidator::validateVesselSelection(std::string& selection){
     std::vector<char> vesselTypes = {'A', 'B', 'C', 'D', 'E'};
     if (selection.size() == 1) {
         for(auto i = 0; i < vesselTypes.size(); i++){
@@ -58,7 +58,7 @@ bool BSValidator::validateVesselSelection(std::string selection){
 }
 
 
-bool BSValidator::validateXCoordinate(std::string xCoor){
+bool BSValidator::validateXCoordinate(std::string& xCoor){
     try {
         auto validXCoor = std::stoi(xCoor);
         if(validXCoor >= 1 && validXCoor <= 10){
@@ -80,7 +80,7 @@ bool BSValidator::validateXCoordinate(std::string xCoor){
 }
 
 
-bool BSValidator::validateYCoordinate(std::string yCoor){
+bool BSValidator::validateYCoordinate(std::string& yCoor){
     try {
         auto validYCoor = std::stoi(yCoor);
         if(validYCoor >= 1 && validYCoor <= 6){
@@ -102,7 +102,7 @@ bool BSValidator::validateYCoordinate(std::string yCoor){
 }
 
 
-bool BSValidator::validateDashboardSelection(std::string selection){
+bool BSValidator::validateDashboardSelection(std::string& selection){
     std::vector<char> dashboardChoices = {'L', 'S', 'Q'};
     if (selection.size() == 1) {
         for(auto i = 0; i < dashboardChoices.size(); i++){

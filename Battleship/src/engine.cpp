@@ -370,7 +370,7 @@ bool Engine::AttackVesselFound(int x, int y){
  Responsibility:
  ******************************************************/
 void Engine::InitiateHumanAttack(std::string xCoordinate, std::string yCoordinate, std::shared_ptr<Vessel> attack_vessel){
-    Vessel* target_vessel = nullptr;
+    std::shared_ptr<Vessel> target_vessel = nullptr;
     int y = std::stoi(yCoordinate);
     int x = std::stoi(xCoordinate);
     
@@ -709,7 +709,7 @@ char Engine::ActivateHowToMenu(){
 /******************************************************
  Responsibility:
  ******************************************************/
-void Engine::HumanTurnSequence(char* action){
+void Engine::HumanTurnSequence(char& action){
     char user_input;
     bool attack_launched = false;
     
@@ -727,7 +727,7 @@ void Engine::HumanTurnSequence(char* action){
         }
         else{
             //Action must be 'Q' here.
-            *action = user_input;
+            action = user_input;
             break;
         }
     }

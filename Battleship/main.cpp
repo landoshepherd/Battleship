@@ -11,7 +11,7 @@
 
 #include "src/engine.hpp"
 
-void GameSetup(Engine* game, Player* human, Player* computer){
+void GameSetup(std::shared_ptr<Engine> game, std::shared_ptr<Player> human, std::shared_ptr<Player> computer){
     std::cout << "Setting up board...";
     BSUtilities::LoadingAnimation();
     std::cout << std::endl;
@@ -20,7 +20,7 @@ void GameSetup(Engine* game, Player* human, Player* computer){
     game->DeployHumanVessels();
 }
 
-void MainMenu(Engine* game, char* action){
+void MainMenu(std::shared_ptr<Engine> game, char& action){
     std::string user_input;
     //BSUtilities::ClearScreen();
     game->PrintMainMenu();
@@ -31,25 +31,25 @@ void MainMenu(Engine* game, char* action){
             break;
         }
     }
-    *action = toupper(user_input[0]);
+    action = toupper(user_input[0]);
 }
 
 int main() {
-    Player* human = new Player;
-    Player* computer = new Player;
-    Engine* battleship = nullptr;
-    battleship = new Engine(human, computer);
+    std::shared_ptr<Player> human(new Player);
+    std::shared_ptr<Player> computer(new Player);
+    std::shared_ptr<Engine> battleship(new Engine(human, computer));
+
     char action;
 
     while(true) {
-        MainMenu(battleship, &action);
+        MainMenu(battleship, action);
         switch (action) {
             case 'A':{
 
                 GameSetup(battleship, human, computer);
 
                 while (true) {
-                    battleship->HumanTurnSequence(&action);
+                    battleship->HumanTurnSequence(action);
                     if (toupper(action) == 'Q') {
                         std::cout << "Thanks for playing!" << std::endl;
                         break;
